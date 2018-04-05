@@ -6,48 +6,57 @@
      height: 60
  });
 
-
+ var courseId;
+ var userName;
+ var teacherData;
 
  $(document).ready(function() {
 
+     var url = location.search;
+     var obj = {};
 
-       $.ajax({
+     if (url.indexOf("?") != -1) {
+         var strs = url.substr(1).split("&");　
+         for (var i = 0; i < strs.length; i++) {
+             obj[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+         }
+     }
+
+
+     courseId = obj.courseId;
+     userName = obj.name;
+
+      refleshClassList();
+ });
+
+function refleshClassList(){
+     $.ajax({
                url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/list",
-               type:"GET",
+               type:"POST",
                cache: false,
-               data:{},
+               data:{gradeSubjectId:courseId},
                success:function(result) {
                      dealdata1(result);
                }
        });
 
- });
+     getTeacherDataForAddClass();
+}
 
-
-
-
+function getTeacherDataForAddClass(){
+    $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
+         type: "POST",
+         cache: false,
+         success: function(result) {
+             teacherData = result;
+         }
+     });
+}
 
  function dealdata1(msg) {
-
-     var content = '<div class="card-panel" style="background-color: rgba(255, 255, 255, 0.5);">' +
-         '当期位置：TMS > <a href="main.html">学期管理</a> > <a href="coursemanage.html">课程管理</a> > <a href="#">班级管理</a><button class="btn waves-effect waves-light blue" style="margin-left: 20px;" id="add_class">添加班级</button>' +
-         '</div>' +
-         '<div class="card-panel" style="background-color: rgba(255, 255, 255, 0.5);">' +
-         '<table>' +
-         '<thead>' +
-         '<tr>' +
-         '<th>班级ID</th>' +
-         '<th>名称</th>' +
-         '<th>课次</th>' +
-         '<th>老师</th>' +
-         '<th>操作1</th>' +
-         '<th>操作2</th>' +
-         '<th>操作3</th>' +
-         '</tr>' +
-         '</thead>' +
-         '<tbody id="td_classlist"></tbody></table></div>'
-
-     $('#main_content').append(content);
+     $('#main_content').empty();
+     $('#main_content').append(classListContent);
 
      for (var i = 0; i < msg.data.list.length; i++) {
 
@@ -56,8 +65,8 @@
              predata.id +
              '</td><td>' +
              predata.className +
-             '</td><td>' +
-             predata.courses +
+              '</td><td>' +
+             predata.classHours +
              '</td><td>' +
              predata.teacherName +
              '</td><td><button class="btn waves-effect waves-light orange" id="classcountmanage' + i + '">课次管理</button>' +
@@ -68,143 +77,151 @@
          $('#td_classlist').append(newdata);
 
          (function(predata) {
-
              $("#change" + i).click(function() {
                  showClassChangeDialog(predata);
-                 return false;
              });
-
          })(predata);
 
-         $("#delete" + i).click(function() {
 
+         (function(predata) {
+        $("#delete" + i).click(function() {
+                 deleteClassApi(predata);
          });
+         })(predata);
 
 
-         $("#classcountmanage" + i).click(function() {
-
+         (function(predata) {
+          $("#classcountmanage" + i).click(function() {
              window.location.href = "lessonmanage.html";
              return false;
-
          });
+
+         })(predata);
 
      }
 
 
      $('#add_class').click(function() {
-         showadduserdialog();
+         showAddClassDialog();
      });
 
 
  }
 
-
- function showadduserdialog() {
-
-     var innerText = ' <form>' +
-
-         '<div class="row">' +
-         '<div class="input-field col s12">' +
-         '<input id="username" name="username" type="text" class="validate"/>' +
-         '<label for="username">名称</label>' +
-         '</div>' +
-         '</div>' +
-
-         '<div class="row">' +
-         '<div class="input-field col s12">' +
-         '<input id="password" name="password" type="text" class="validate"/>' +
-         '<label for="password">课次</label>' +
-         '</div>' +
-         '</div>' +
+function deleteClassApi(data){
 
 
-         '<div class="row">' +
-         '<div class="input-field col s12">' +
-         '<input id="password" name="password" type="text" class="validate"/>' +
-         '<label for="password">老师</label>' +
-         '</div>' +
-         '</div>' +
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/delete",
+         type: "POST",
+         cache: false,
+         data:{ id: data.id, loginName: userName },
+         success: function(result) {
+             refleshClassList();
+         }
+     });
+}
 
-         '</form>';
+ function showAddClassDialog() {
 
      dialog1 = dialog({
          width: 400,
          title: '添加班级',
-         content: innerText,
+         content: addClassDialogContent,
          okValue: '确定',
-         ok: function() {},
+         ok: function() {
+
+          var val1 = $("#name").val();
+          var val2 = $("#coursehours").val(); 
+          var val3 = $("#add_teacher_select").val();
+
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                 alert("输入有误！");
+             } else {
+                 addClassApi(val1, val2, val3);
+             }
+         },
          cancelValue: '取消',
-         cancel: function() {}
+         cancel: function() {
+         }
      });
 
+    var teacherList = teacherData.data.list;
+    for (var j = 0; j < teacherList.length; j++) {
+         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+     }
      dialog1.showModal();
+     $('select').material_select();
+
  }
 
+function addClassApi(p1,p2,p3){
+
+$.ajax({
+               url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
+               type:"POST",
+               cache: false,
+               data:{className:p1,gradeSubjectId:courseId,classHours:p2,teacherId:p3},
+               success:function(result) {
+                     refleshClassList();
+               }
+       });
+
+}
+
  function showClassChangeDialog(data) {
-
-     var innerText = ' <form>' +
-
-         '<div class="row">' +
-         '<div class="input-field col s12">' +
-         '<input id="classname" name="classname" type="text" class="validate"/>' +
-         '<label class="active" for="classname">名称</label>' +
-         '</div>' +
-         '</div>' +
-
-         // '<div class="row">' +
-         // '<div class="input-field col s12">' +
-         // '<input id="lessonCount" name="lessonCount" type="text" class="validate"/>' +
-         // '<label class="active" for="lessonCount">课次</label>' +
-         // '</div>' +
-         // '</div>' +
-
-         '<div class="row">' +
-         '<div class="input-field col s12">' +
-         '<input id="teacher" name="teacher" type="text" class="validate"/>' +
-         '<label class="active" for="teacher">老师</label>' +
-         '</div>' +
-         '</div>' +
-
-         '</form>';
-
      dialog1 = dialog({
          width: 400,
          title: '修改班级',
-         content: innerText,
+         content: changeClassDialogContent,
          okValue: '确定',
-         ok: function() { confirmDialog(data); return false; },
+         ok: function() { 
+
+          var val1 = $("#name").val();
+          var val2 = $("#coursehours").val(); 
+          var val3 = $("#change_teacher_select").val();
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                 alert("输入有误！");
+             } else {
+                 changeClassApi(val1, val2, val3,data.id);
+             }
+
+             },
          cancelValue: '取消',
          cancel: function() {}
      });
+
+
+    var teacherList = teacherData.data.list;
+    for (var j = 0; j < teacherList.length; j++) {
+         $('#change_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+     }
 
      dialog1.showModal();
 
-     $('#classname').val(data.className);
-     //$('#lessonCount').val(data.lesson_count);
-     $('#teacher').val(data.teacherName);
+     $('#name').val(data.className);
+     $('#coursehours').val(data.classHours);
+     $('select').material_select();
  }
 
+function changeClassApi(p1, p2, p3,classId){
+$.ajax({
+               url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
+               type:"POST",
+               cache: false,
+               data:{id:classId,className:p1,gradeSubjectId:courseId,classHours:p2,teacherId:p3},
+               success:function(result) {
+                     refleshClassList();
+               }
+       });
 
- function confirmDialog() {
-     dialog2 = dialog({
-         content: '确认修改？',
-         okValue: '确认',
-         ok: function() {
-             confirmDeal();
-         },
-         cancelValue: '取消',
-         cancel: function() {}
-     });
-     dialog2.showModal();
- }
 
- function confirmDeal() {
-     laodingDialog.showModal();
-     dialog1.remove();
-     dialog2.remove();
+}
 
-     setTimeout(function() {
-         laodingDialog.close();
-     }, 2000);
 
- }
+ function isEmpty(obj) {
+     for (var name in obj) {
+         return false;
+     }
+     return true;
+ };

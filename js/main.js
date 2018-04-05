@@ -230,13 +230,17 @@
 
      var subjectlist = subjectData.data.list;
      var gradelist = gradeData.data.list;
+
      for (var i = 0; i < subjectlist.length; i++) {
-         $('#add_subject_select').append('<option value="' + i + '">' + subjectlist[i].subjectName + '</option>');
+         $('#add_subject_select').append('<option value="' + subjectlist[i].id + '">' + subjectlist[i].subjectName + '</option>');
      }
+
      for (var j = 0; j < gradelist.length; j++) {
-         $('#add_grade_select').append('<option value="' + j + '">' + gradelist[j].gradeName + '</option>');
+         $('#add_grade_select').append('<option value="' + gradelist[j].id + '">' + gradelist[j].gradeName + '</option>');
      }
+
      dialog1.showModal();
+
      $('select').material_select();
  }
 
@@ -291,13 +295,15 @@
 
 
      var subjectlist = subjectData.data.list;
+     
      var gradelist = gradeData.data.list;
 
      for (var i = 0; i < subjectlist.length; i++) {
-         $('#change_subject_select').append('<option value="' + i + '">' + subjectlist[i].subjectName + '</option>');
+         $('#change_subject_select').append('<option value="' + subjectlist[i].id + '">' + subjectlist[i].subjectName + '</option>');
      }
+
      for (var j = 0; j < gradelist.length; j++) {
-         $('#change_grade_select').append('<option value="' + j + '">' + gradelist[i].gradeName + '</option>');
+         $('#change_grade_select').append('<option value="' + gradelist[i].id + '">' + gradelist[i].gradeName + '</option>');
      }
 
      dialog1.showModal();

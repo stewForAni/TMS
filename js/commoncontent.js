@@ -290,3 +290,84 @@ var courseAddDialogContent = ' <form>' +
     '</div>' +
 
     '</form>';
+
+
+
+
+      var classListContent = '<div class="card-panel" style="background-color: rgba(255, 255, 255, 0.5);">' +
+         '当期位置：TMS > <a href="main.html">学期管理</a> > <a href="coursemanage.html">课程管理</a> > <a href="#">班级管理</a><button class="btn waves-effect waves-light blue" style="margin-left: 20px;" id="add_class">添加班级</button>' +
+         '</div>' +
+         '<div class="card-panel" style="background-color: rgba(255, 255, 255, 0.5);">' +
+         '<table>' +
+         '<thead>' +
+         '<tr>' +
+         '<th>班级ID</th>' +
+         '<th>名称</th>' +
+         '<th>课时</th>' +
+         '<th>老师</th>' +
+         '<th>操作1</th>' +
+         '<th>操作2</th>' +
+         '<th>操作3</th>' +
+         '</tr>' +
+         '</thead>' +
+         '<tbody id="td_classlist"></tbody></table></div>';
+
+
+
+
+
+          var addClassDialogContent = ' <form>' +
+
+         '<div class="row">' +
+         '<div class="input-field col s12">' +
+         '<input id="name" name="name" type="text" class="validate"/>' +
+         '<label for="name">名称</label>' +
+         '</div>' +
+         '</div>' +
+
+         '<div class="row">' +
+         '<div class="input-field col s12">' +
+         '<input id="coursehours" name="coursehours" type="text" class="validate"/>' +
+         '<label for="coursehours">课时</label>' +
+         '</div>' +
+         '</div>' +
+
+    '<div class="row">' +
+    '<div class="input-field col s12" id="teacher_input">' +
+    '<select id="add_teacher_select">' +
+    '</select>' +
+    '<label>老师</label>' +
+    '</div>' +
+    '</div>' +
+
+         '</form>';
+
+
+
+
+
+           var changeClassDialogContent = ' <form>' +
+
+         '<div class="row">' +
+         '<div class="input-field col s12">' +
+         '<input id="name" name="name" type="text" class="validate"/>' +
+         '<label class="active" for="name">名称</label>' +
+         '</div>' +
+         '</div>' +
+
+         '<div class="row">' +
+         '<div class="input-field col s12">' +
+         '<input id="coursehours" name="coursehours" type="text" class="validate"/>' +
+         '<label class="active" for="coursehours">课时</label>' +
+         '</div>' +
+         '</div>' +
+
+    '<div class="row">' +
+    '<div class="input-field col s12" id="teacher_input">' +
+    '<select id="change_teacher_select">' +
+    '</select>' +
+    '<label>老师</label>' +
+    '</div>' +
+    '</div>' +
+
+         '</form>';

@@ -84,7 +84,7 @@
              '<td><button class="btn waves-effect waves-light orange" id="classmanage' + i + '">班级管理</button></td>' +
              '<td><button class="btn waves-effect waves-light blue" id="change' + i + '">修改</button></td>' +
              '<td><button class="btn waves-effect waves-light blue" id="delete' + i + '">删除</button></td>' +
-             '</tr>"'
+             '</tr>"';
 
          $('#td_courselist').append(newdata);
 
@@ -97,16 +97,21 @@
          })(predata);
 
          (function(predata) {
+
              $("#delete" + i).click(function() {
                  deleteCourseApi(predata);
              });
-         });
+
+         })(predata);
 
          (function(predata) {
+
              $("#classmanage" + i).click(function() {
-                 window.location.href = "classmanage.html";
+                     var url = "classmanage.html?courseId=" + predata.id + "&name=" + userName;
+                 window.location.href = url;
              });
-         });
+
+         })(predata);
      }
 
      $('#add_user').click(function() {
@@ -152,16 +157,15 @@
          cancel: function() {}
      });
 
-
      var subjectlist = subjectData.data.list;
      var gradelist = gradeData.data.list;
 
      for (var i = 0; i < subjectlist.length; i++) {
-         $('#change_subject_select').append('<option value="' + i + '">' + subjectlist[i].subjectName + '</option>');
+         $('#change_subject_select').append('<option value="' + subjectlist[i].id + '">' + subjectlist[i].subjectName + '</option>');
      }
 
      for (var j = 0; j < gradelist.length; j++) {
-         $('#change_grade_select').append('<option value="' + j + '">' + gradelist[j].gradeName + '</option>');
+         $('#change_grade_select').append('<option value="' + gradelist[j].id + '">' + gradelist[j].gradeName + '</option>');
      }
 
      dialog1.showModal();
@@ -208,11 +212,11 @@
      var gradelist = gradeData.data.list;
 
      for (var i = 0; i < subjectlist.length; i++) {
-         $('#add_subject_select').append('<option value="' + i + '">' + subjectlist[i].subjectName + '</option>');
+         $('#add_subject_select').append('<option value="' + subjectlist[i].id + '">' + subjectlist[i].subjectName + '</option>');
      }
 
      for (var j = 0; j < gradelist.length; j++) {
-         $('#add_grade_select').append('<option value="' + j + '">' + gradelist[j].gradeName + '</option>');
+         $('#add_grade_select').append('<option value="' + gradelist[j].id + '">' + gradelist[j].gradeName + '</option>');
      }
 
      dialog1.showModal();
