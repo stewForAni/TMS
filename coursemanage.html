@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TMS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="Bookmark" href="images/school.ico" />
+    <link rel="Shortcut Icon" href="images/school.ico" />
+    <link href="css/materialize.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dialog.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/dialog.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    html {
+        background: url("images/mainbg.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .input-field label {
+        color: #757575;
+    }
+
+     .input-field .dropdown-content [type="checkbox"]+label {
+        /*top: -10px;*/
+        /* previously 1px; */
+        display: inline;
+        /* previously inherits `display: inline-block;` from `[type="checkbox"]+label` */
+    }
+    </style>
+</head>
+
+<body>
+    <div class="row left" style="width:20%;position:fixed;">
+        <div style="height: 1000px;" class="col s12 m12 l12">
+            <div class="card-panel" style="background-color: rgba(255, 255, 255, 0.5);height: 90%">
+                <div class="card-panel center white blue-text">
+                    <h5>TMS</h5>
+                </div>
+                <div class="card-panel  white" id="user_m" style="cursor:pointer;">
+                    <i class="material-icons left">apps</i> 课程管理</div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="row right by-lista" style="width: 80%;">
+        <div class="row pt-xlg">
+            <div class="col s12" id="main_content">
+            </div>
+        </div>
+    </div>
+    <script src="js/coursemanage.js"></script>
+    <script src="js/commoncontent.js"></script>
+</body>
+
+</html>

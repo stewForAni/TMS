@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录页面</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="Bookmark" href="images/school.ico" />
+    <link rel="Shortcut Icon" href="images/school.ico" />
+    <link href="css/materialize.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    html {
+        background: url("images/mainbg.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .input-field label {
+        color: #757575;
+    }
+    </style>
+</head>
+
+<body>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <div id="content" class="container" style="width: 400px;
+     height: 300px;
+     padding: 13px;
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     margin-left: -200px;
+     margin-top: -150px;
+     background-color: rgba(255, 255, 255, 0.8);
+     border-radius: 6px;
+     text-align: center;
+     box-shadow: 1px 1px 1px #aaaaaa;">
+        <div class="row center-align">
+            <form class="col offset-s3 s6 margin-top" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="username" name="username" type="text" class="validate" />
+                        <label for="username">点击输入用户名</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" name="password" type="password" class="validate" />
+                        <label for="password">点击输入密码</label>
+                    </div>
+                </div>
+                <div class="col s12 p-none">
+                    <button class="btn waves-effect waves-light center" type="submit" name="action" id="login">
+                        点击登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+
+</html>
