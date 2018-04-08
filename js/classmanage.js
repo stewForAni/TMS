@@ -92,8 +92,9 @@ function getTeacherDataForAddClass(){
 
          (function(predata) {
           $("#classcountmanage" + i).click(function() {
-             window.location.href = "lessonmanage.html";
-             return false;
+
+var url = "lessonmanage.html?classId=" + predata.id + "&name=" + userName;
+                 window.location.href = url;
          });
 
          })(predata);
