@@ -71,9 +71,9 @@
              '</td><td>' +
              predata.teacherName +
              '</td><td>' +
-             predata.teacherName +
+             predata.startTime +
              '</td><td>' +
-             predata.teacherName +
+             predata.endTime +
              '</td><td><button class="btn waves-effect waves-light orange" id="classcountmanage' + i + '">课次管理</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="change' + i + '">修改</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="delete' + i + '">删除</button>' +
@@ -140,10 +140,13 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#add_teacher_select").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+             var val4 = $("#test1").val();
+             var val5 = $("#test1-1").val();
+
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)|| isEmpty(val4)|| isEmpty(val5)) {
                  alert("输入有误！");
              } else {
-                 addClassApi(val1, val2, val3);
+                 addClassApi(val1, val2, val3, val4, val5);
              }
          },
          cancelValue: '取消',
@@ -172,13 +175,18 @@
      });
  }
 
- function addClassApi(p1, p2, p3) {
+ function addClassApi(p1, p2, p3, p4, p5) {
 
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
          type: "POST",
          cache: false,
-         data: { className: p1, gradeSubjectId: courseId, classHours: p2, teacherId: p3 },
+         data: { className: p1, 
+            gradeSubjectId: courseId, 
+            classHours: p2,
+            teacherId: p3,
+            startTime:p4,
+            endTime:p5 },
          success: function(result) {
              refleshClassList();
          }
@@ -200,10 +208,13 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#change_teacher_select").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+             var val4 = $("#test2").val();
+             var val5 = $("#test2-1").val();
+
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
-                 changeClassApi(val1, val2, val3, data.id);
+                 changeClassApi(val1, val2, val3, data.id,val4,val5);
              }
 
          },
@@ -224,6 +235,9 @@
      $('#coursehours').val(data.classHours);
      $('select').material_select();
 
+     $('#test2').val(data.startTime);
+     $('#test2-1').val(data.endTime);
+
 
      laydate.render({
          elem: '#test2',
@@ -239,12 +253,18 @@
 
  }
 
- function changeClassApi(p1, p2, p3, classId) {
+ function changeClassApi(p1, p2, p3, classId, p4, p5) {
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
          type: "POST",
          cache: false,
-         data: { id: classId, className: p1, gradeSubjectId: courseId, classHours: p2, teacherId: p3 },
+         data: { id: classId, 
+            className: p1, 
+            gradeSubjectId: courseId, 
+            classHours: p2, 
+            teacherId: p3,
+            startTime:p4,
+            endTime:p5},
          success: function(result) {
              refleshClassList();
          }

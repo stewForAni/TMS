@@ -502,18 +502,27 @@ var addLessonDialogContent = ' <form>' +
 
 var changeLessonDialogContent = ' <form>' +
 
-    '<div class="row">' +
-    '<div class="input-field col s12">' +
-    '<input id="start_time" name="start_time" type="date" class="validate"/>' +
-    '<label class="active" for="start_time">开始时间</label>' +
+   '<div class="row">' +
+
+    '<div class="layui-inline">' +
+    '<label>开始时间</label>' +
+    '<div class="layui-input-inline">' +
+    '<input type="text" class="layui-input" id="test2" placeholder="点击此处选择日期与时间" lay-key="3">' +
     '</div>' +
     '</div>' +
 
-    '<div class="row">' +
-    '<div class="input-field col s12">' +
-    '<input id="end_time" name="end_time" type="date" class="validate"/>' +
-    '<label class="active" for="end_time">结束时间</label>' +
     '</div>' +
+
+
+    '<div class="row">' +
+
+    '<div class="layui-inline">' +
+    '<label>结束时间</label>' +
+    '<div class="layui-input-inline">' +
+    '<input type="text" class="layui-input" id="test2-1" placeholder="点击此处选择日期与时间" lay-key="4">' +
+    '</div>' +
+    '</div>' +
+
     '</div>' +
 
     '<div class="row">' +

@@ -119,8 +119,8 @@
          okValue: '确定',
          ok: function() {
 
-             var val1 = $("#start_time").val();
-             var val2 = $("#end_time").val();
+             var val1 = $("#test1").val();
+             var val2 = $("#test1-1").val();
              var val3 = $("#add_teacher_select").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
@@ -183,8 +183,8 @@
          okValue: '确定',
          ok: function() {
 
-             var val1 = $("#start_time").val();
-             var val2 = $("#end_time").val();
+             var val1 = $("#test2").val();
+             var val2 = $("#test2-1").val();
              var val3 = $("#change_teacher_select").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
@@ -207,6 +207,18 @@
 
      $('#start_time').val(data.start_time);
      $('#end_time').val(data.end_time);
+
+      laydate.render({
+         elem: '#test2',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
+     laydate.render({
+         elem: '#test3-1',
+         type: 'datetime',
+         theme: 'molv'
+     });
 
  }
 
