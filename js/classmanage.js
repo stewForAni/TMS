@@ -22,29 +22,28 @@
          }
      }
 
-
      courseId = obj.courseId;
      userName = obj.name;
 
-      refleshClassList();
+     refleshClassList();
  });
 
-function refleshClassList(){
+ function refleshClassList() {
      $.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/list",
-               type:"POST",
-               cache: false,
-               data:{gradeSubjectId:courseId},
-               success:function(result) {
-                     dealdata1(result);
-               }
-       });
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/list",
+         type: "POST",
+         cache: false,
+         data: { gradeSubjectId: courseId },
+         success: function(result) {
+             dealdata1(result);
+         }
+     });
 
      getTeacherDataForAddClass();
-}
+ }
 
-function getTeacherDataForAddClass(){
-    $.ajax({
+ function getTeacherDataForAddClass() {
+     $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
          type: "POST",
          cache: false,
@@ -52,10 +51,12 @@ function getTeacherDataForAddClass(){
              teacherData = result;
          }
      });
-}
+ }
 
  function dealdata1(msg) {
+
      $('#main_content').empty();
+
      $('#main_content').append(classListContent);
 
      for (var i = 0; i < msg.data.list.length; i++) {
@@ -65,8 +66,12 @@ function getTeacherDataForAddClass(){
              predata.id +
              '</td><td>' +
              predata.className +
-              '</td><td>' +
+             '</td><td>' +
              predata.classHours +
+             '</td><td>' +
+             predata.teacherName +
+             '</td><td>' +
+             predata.teacherName +
              '</td><td>' +
              predata.teacherName +
              '</td><td><button class="btn waves-effect waves-light orange" id="classcountmanage' + i + '">课次管理</button>' +
@@ -84,18 +89,18 @@ function getTeacherDataForAddClass(){
 
 
          (function(predata) {
-        $("#delete" + i).click(function() {
+             $("#delete" + i).click(function() {
                  deleteClassApi(predata);
-         });
+             });
          })(predata);
 
 
          (function(predata) {
-          $("#classcountmanage" + i).click(function() {
+             $("#classcountmanage" + i).click(function() {
 
-var url = "lessonmanage.html?classId=" + predata.id + "&name=" + userName;
+                 var url = "lessonmanage.html?classId=" + predata.id + "&name=" + userName;
                  window.location.href = url;
-         });
+             });
 
          })(predata);
 
@@ -109,19 +114,18 @@ var url = "lessonmanage.html?classId=" + predata.id + "&name=" + userName;
 
  }
 
-function deleteClassApi(data){
-
+ function deleteClassApi(data) {
 
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/delete",
          type: "POST",
          cache: false,
-         data:{ id: data.id, loginName: userName },
+         data: { id: data.id, loginName: userName },
          success: function(result) {
              refleshClassList();
          }
      });
-}
+ }
 
  function showAddClassDialog() {
 
@@ -132,9 +136,9 @@ function deleteClassApi(data){
          okValue: '确定',
          ok: function() {
 
-          var val1 = $("#name").val();
-          var val2 = $("#coursehours").val(); 
-          var val3 = $("#add_teacher_select").val();
+             var val1 = $("#name").val();
+             var val2 = $("#coursehours").val();
+             var val3 = $("#add_teacher_select").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
@@ -143,58 +147,74 @@ function deleteClassApi(data){
              }
          },
          cancelValue: '取消',
-         cancel: function() {
-         }
+         cancel: function() {}
      });
 
-    var teacherList = teacherData.data.list;
-    for (var j = 0; j < teacherList.length; j++) {
+     var teacherList = teacherData.data.list;
+
+     for (var j = 0; j < teacherList.length; j++) {
          $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
      }
+
      dialog1.showModal();
      $('select').material_select();
 
+     laydate.render({
+         elem: '#test1',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
+     laydate.render({
+         elem: '#test1-1',
+         type: 'datetime',
+         theme: 'molv'
+     });
  }
 
-function addClassApi(p1,p2,p3){
+ function addClassApi(p1, p2, p3) {
 
-$.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
-               type:"POST",
-               cache: false,
-               data:{className:p1,gradeSubjectId:courseId,classHours:p2,teacherId:p3},
-               success:function(result) {
-                     refleshClassList();
-               }
-       });
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
+         type: "POST",
+         cache: false,
+         data: { className: p1, gradeSubjectId: courseId, classHours: p2, teacherId: p3 },
+         success: function(result) {
+             refleshClassList();
+         }
+     });
 
-}
+ }
 
  function showClassChangeDialog(data) {
+
      dialog1 = dialog({
          width: 400,
          title: '修改班级',
          content: changeClassDialogContent,
          okValue: '确定',
-         ok: function() { 
 
-          var val1 = $("#name").val();
-          var val2 = $("#coursehours").val(); 
-          var val3 = $("#change_teacher_select").val();
+         ok: function() {
+
+             var val1 = $("#name").val();
+             var val2 = $("#coursehours").val();
+             var val3 = $("#change_teacher_select").val();
+
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
              } else {
-                 changeClassApi(val1, val2, val3,data.id);
+                 changeClassApi(val1, val2, val3, data.id);
              }
 
-             },
+         },
+
          cancelValue: '取消',
          cancel: function() {}
      });
 
 
-    var teacherList = teacherData.data.list;
-    for (var j = 0; j < teacherList.length; j++) {
+     var teacherList = teacherData.data.list;
+     for (var j = 0; j < teacherList.length; j++) {
          $('#change_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
      }
 
@@ -203,21 +223,35 @@ $.ajax({
      $('#name').val(data.className);
      $('#coursehours').val(data.classHours);
      $('select').material_select();
+
+
+     laydate.render({
+         elem: '#test2',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
+     laydate.render({
+         elem: '#test2-1',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
  }
 
-function changeClassApi(p1, p2, p3,classId){
-$.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
-               type:"POST",
-               cache: false,
-               data:{id:classId,className:p1,gradeSubjectId:courseId,classHours:p2,teacherId:p3},
-               success:function(result) {
-                     refleshClassList();
-               }
-       });
+ function changeClassApi(p1, p2, p3, classId) {
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
+         type: "POST",
+         cache: false,
+         data: { id: classId, className: p1, gradeSubjectId: courseId, classHours: p2, teacherId: p3 },
+         success: function(result) {
+             refleshClassList();
+         }
+     });
 
 
-}
+ }
 
 
  function isEmpty(obj) {

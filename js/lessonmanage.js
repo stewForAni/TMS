@@ -8,14 +8,14 @@
 
 
 
-  var classId;
+ var classId;
  var userName;
  var teacherData;
 
 
  $(document).ready(function() {
 
- var url = location.search;
+     var url = location.search;
      var obj = {};
 
      if (url.indexOf("?") != -1) {
@@ -29,28 +29,27 @@
      classId = obj.classId;
      userName = obj.name;
 
-refleshLessonList();
+     refleshLessonList();
  });
 
-function refleshLessonList(){
-$.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/course/list",
-               type:"POST",
-               cache: false,
-               success:function(result) {
-                     dealdata1(result);
-
-               }
-       });
+ function refleshLessonList() {
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/list",
+         type: "POST",
+         cache: false,
+         success: function(result) {
+             dealdata1(result);
+         }
+     });
 
 
      getTeacherDataForAddClass();
 
 
-}
+ }
 
-function getTeacherDataForAddClass(){
-    $.ajax({
+ function getTeacherDataForAddClass() {
+     $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
          type: "POST",
          cache: false,
@@ -58,11 +57,12 @@ function getTeacherDataForAddClass(){
              teacherData = result;
          }
      });
-}
+ }
 
 
  function dealdata1(msg1) {
-$('#main_content').empty();
+  
+     $('#main_content').empty();
      $('#main_content').append(lessonListContent);
 
      for (var i = 0; i < msg1.data.length; i++) {
@@ -92,18 +92,13 @@ $('#main_content').empty();
 
          })(predata);
 
-
-
          (function(predata) {
 
              $("#delete" + i).click(function() {
 
-         });
+             });
 
          })(predata);
-
-        
-
      }
 
 
@@ -124,9 +119,9 @@ $('#main_content').empty();
          okValue: '确定',
          ok: function() {
 
- var val1 = $("#start_time").val();
-          var val2 = $("#end_time").val(); 
-          var val3 = $("#add_teacher_select").val();
+             var val1 = $("#start_time").val();
+             var val2 = $("#end_time").val();
+             var val3 = $("#add_teacher_select").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
@@ -134,35 +129,50 @@ $('#main_content').empty();
                  addLessonApi(val1, val2, val3);
              }
 
-
          },
          cancelValue: '取消',
          cancel: function() {}
      });
 
-var teacherList = teacherData.data.list;
-    for (var j = 0; j < teacherList.length; j++) {
+     var teacherList = teacherData.data.list;
+
+     for (var j = 0; j < teacherList.length; j++) {
          $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
      }
+
      dialog1.showModal();
-     $('select').material_select(); 
+
+     $('select').material_select();
+
+     laydate.render({
+         elem: '#test1',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
+     laydate.render({
+         elem: '#test1-1',
+         type: 'datetime',
+         theme: 'molv'
+     });
+
  }
 
 
-function addLessonApi(val1, val2, val3){
+ function addLessonApi(val1, val2, val3) {
 
-$.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/course/add",
-               type:"POST",
-               cache: false,
-               data:{teacherId:val3,start_time:val1,end_time:val2,classId:classId},
-               success:function(result) {
-refleshLessonList();
-               }
-       });
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/add",
+         type: "POST",
+         cache: false,
+         data: { teacherId: val3, start_time: val1, end_time: val2, classId: classId },
+         success: function(result) {
+             refleshLessonList();
+         }
+     });
 
 
-}
+ }
 
  function showChangeDialog1(data) {
 
@@ -171,11 +181,11 @@ refleshLessonList();
          title: '修改课次',
          content: changeLessonDialogContent,
          okValue: '确定',
-         ok: function() { 
+         ok: function() {
 
-          var val1 = $("#start_time").val();
-          var val2 = $("#end_time").val(); 
-          var val3 = $("#change_teacher_select").val();
+             var val1 = $("#start_time").val();
+             var val2 = $("#end_time").val();
+             var val3 = $("#change_teacher_select").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
@@ -187,34 +197,35 @@ refleshLessonList();
          cancelValue: '取消',
          cancel: function() {}
      });
-     
-    var teacherList = teacherData.data.list;
-    for (var j = 0; j < teacherList.length; j++) {
+
+     var teacherList = teacherData.data.list;
+     for (var j = 0; j < teacherList.length; j++) {
          $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
      }
      dialog1.showModal();
-     $('select').material_select(); 
+     $('select').material_select();
 
      $('#start_time').val(data.start_time);
      $('#end_time').val(data.end_time);
+
  }
 
 
-function chnageLessonApi(val1, val2, val3){
+ function chnageLessonApi(val1, val2, val3) {
 
-$.ajax({
-               url:"http://47.88.153.88:8080/app-cms-web/v1/web/course/upload",
-               type:"POST",
-               cache: false,
-               data:{teacherId:val3,start_time:val1,end_time:val2,classId:classId},
-               success:function(result) {
-refleshLessonList();
-               }
-       });
+     $.ajax({
+         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/upload",
+         type: "POST",
+         cache: false,
+         data: { teacherId: val3, start_time: val1, end_time: val2, classId: classId },
+         success: function(result) {
+             refleshLessonList();
+         }
+     });
 
 
 
-}
+ }
 
  function isEmpty(obj) {
      for (var name in obj) {
@@ -222,15 +233,3 @@ refleshLessonList();
      }
      return true;
  };
-
-
-
-
-
-
-
-
-
-
-
-
