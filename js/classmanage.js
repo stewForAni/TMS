@@ -220,7 +220,7 @@
 
      var teacherList = teacherData.data.list;
      for (var j = 0; j < teacherList.length; j++) {
-         $('#change_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+         $('#change_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();

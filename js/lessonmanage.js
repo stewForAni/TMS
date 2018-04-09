@@ -61,7 +61,7 @@
 
 
  function dealdata1(msg1) {
-  
+
      $('#main_content').empty();
      $('#main_content').append(lessonListContent);
 
@@ -122,11 +122,13 @@
              var val1 = $("#test1").val();
              var val2 = $("#test1-1").val();
              var val3 = $("#add_teacher_select").val();
+             var val4 = $("#start_time").val();
+             var val5 = $("#end_time").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
-                 addLessonApi(val1, val2, val3);
+                 addLessonApi(val1, val2, val3, val4, val5);
              }
 
          },
@@ -137,18 +139,20 @@
      var teacherList = teacherData.data.list;
 
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();
-
      $('select').material_select();
+
+     $("#start_picker").DateTimePicker();
+     $("#end_picker").DateTimePicker();
 
 
  }
 
 
- function addLessonApi(val1, val2, val3) {
+ function addLessonApi(val1, val2, val3, val4, val5) {
 
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/add",
@@ -170,49 +174,45 @@
          title: '修改课次',
          content: changeLessonDialogContent,
          okValue: '确定',
+
          ok: function() {
 
              var val1 = $("#test2").val();
              var val2 = $("#test2-1").val();
              var val3 = $("#change_teacher_select").val();
-
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+             var val4 = $("#start_time").val();
+             var val5 = $("#end_time").val();
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
                  chnageLessonApi(val1, val2, val3);
              }
 
          },
+
          cancelValue: '取消',
          cancel: function() {}
      });
 
      var teacherList = teacherData.data.list;
+     
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
      }
+
      dialog1.showModal();
      $('select').material_select();
 
      $('#start_time').val(data.start_time);
      $('#end_time').val(data.end_time);
 
-      laydate.render({
-         elem: '#test2',
-         type: 'datetime',
-         theme: 'molv'
-     });
-
-     laydate.render({
-         elem: '#test3-1',
-         type: 'datetime',
-         theme: 'molv'
-     });
+     $("#start_picker").DateTimePicker();
+     $("#end_picker").DateTimePicker();
 
  }
 
 
- function chnageLessonApi(val1, val2, val3) {
+ function chnageLessonApi(val1, val2, val3, val4, val5) {
 
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/upload",
@@ -223,8 +223,6 @@
              refleshLessonList();
          }
      });
-
-
 
  }
 

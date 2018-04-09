@@ -160,7 +160,7 @@
              '</td><td>' +
              predata.teacherName +
              '</td><td>' +
-             predata.subjectId +
+             predata.subjectName +
              '</td><td>' +
              predata.teacherId +
              '</td><td>' +

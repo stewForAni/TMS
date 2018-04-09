@@ -445,13 +445,7 @@ var addLessonDialogContent = ' <form>' +
     '<div id="end_picker"></div>' +
     '</div>' +
 
-    '<div class="row">' +
-    '<div class="input-field col s12" id="teacher_input">' +
-    '<select id="add_m_select">' +
-    '</select>' +
-    '<label>教材</label>' +
-    '</div>' +
-    '</div>' +
+    
 
 
 
@@ -463,7 +457,13 @@ var addLessonDialogContent = ' <form>' +
     '</div>' +
     '</div>' +
 
-
+'<div class="row">' +
+    '<form enctype="multipart/form-data">' +
+    '<input name="file" type="file" />' +
+    '<input type="button" value="Upload" />' +
+    '</form>' +
+    '<progress></progress>' +
+    '</div>' +
 
     '</form>';
 
