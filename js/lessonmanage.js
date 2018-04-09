@@ -144,17 +144,6 @@
 
      $('select').material_select();
 
-     laydate.render({
-         elem: '#test1',
-         type: 'datetime',
-         theme: 'molv'
-     });
-
-     laydate.render({
-         elem: '#test1-1',
-         type: 'datetime',
-         theme: 'molv'
-     });
 
  }
 

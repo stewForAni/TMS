@@ -140,10 +140,10 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#add_teacher_select").val();
 
-             var val4 = $("#test1").val();
-             var val5 = $("#test1-1").val();
+             var val4 = $("#start_time").val();
+             var val5 = $("#end_time").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)|| isEmpty(val4)|| isEmpty(val5)) {
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
                  addClassApi(val1, val2, val3, val4, val5);
@@ -156,23 +156,15 @@
      var teacherList = teacherData.data.list;
 
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].teacherName + '</option>');
+         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();
      $('select').material_select();
 
-     laydate.render({
-         elem: '#test1',
-         type: 'datetime',
-         theme: 'molv'
-     });
 
-     laydate.render({
-         elem: '#test1-1',
-         type: 'datetime',
-         theme: 'molv'
-     });
+     $("#start_picker").DateTimePicker();
+     $("#end_picker").DateTimePicker();
  }
 
  function addClassApi(p1, p2, p3, p4, p5) {
@@ -181,12 +173,14 @@
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
          type: "POST",
          cache: false,
-         data: { className: p1, 
-            gradeSubjectId: courseId, 
-            classHours: p2,
-            teacherId: p3,
-            startTime:p4,
-            endTime:p5 },
+         data: {
+             className: p1,
+             gradeSubjectId: courseId,
+             classHours: p2,
+             teacherId: p3,
+             startTime: p4,
+             endTime: p5
+         },
          success: function(result) {
              refleshClassList();
          }
@@ -208,13 +202,13 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#change_teacher_select").val();
 
-             var val4 = $("#test2").val();
-             var val5 = $("#test2-1").val();
+             var val4 = $("#start_time").val();
+             var val5 = $("#end_time").val();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
-                 changeClassApi(val1, val2, val3, data.id,val4,val5);
+                 changeClassApi(val1, val2, val3, data.id, val4, val5);
              }
 
          },
@@ -235,21 +229,14 @@
      $('#coursehours').val(data.classHours);
      $('select').material_select();
 
-     $('#test2').val(data.startTime);
-     $('#test2-1').val(data.endTime);
+     $('#start_time').val(data.startTime);
+     $('#end_time').val(data.endTime);
 
 
-     laydate.render({
-         elem: '#test2',
-         type: 'datetime',
-         theme: 'molv'
-     });
 
-     laydate.render({
-         elem: '#test2-1',
-         type: 'datetime',
-         theme: 'molv'
-     });
+     $("#start_picker").DateTimePicker();
+     $("#end_picker").DateTimePicker();
+
 
  }
 
@@ -258,13 +245,15 @@
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
          type: "POST",
          cache: false,
-         data: { id: classId, 
-            className: p1, 
-            gradeSubjectId: courseId, 
-            classHours: p2, 
-            teacherId: p3,
-            startTime:p4,
-            endTime:p5},
+         data: {
+             id: classId,
+             className: p1,
+             gradeSubjectId: courseId,
+             classHours: p2,
+             teacherId: p3,
+             startTime: p4,
+             endTime: p5
+         },
          success: function(result) {
              refleshClassList();
          }

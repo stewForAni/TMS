@@ -321,27 +321,17 @@ var classListContent = '<div class="card-panel" style="background-color: rgba(25
 var addClassDialogContent = ' <form>' +
 
     '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>开始时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test1" placeholder="点击此处选择日期与时间" lay-key="1">' +
+    '<p>开始时间 : </p>' +
+    '<input type="text" id="start_time" data-field="datetime" >' +
+    '<div id="start_picker"></div>' +
     '</div>' +
-    '</div>' +
-
-    '</div>' +
-
 
     '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>结束时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test1-1" placeholder="点击此处选择日期与时间" lay-key="2">' +
-    '</div>' +
+    '<p>结束时间 : </p>' +
+    '<input type="text" id="end_time" data-field="datetime" >' +
+    '<div id="end_picker"></div>' +
     '</div>' +
 
-    '</div>' +
 
 
     '<div class="row">' +
@@ -374,27 +364,17 @@ var addClassDialogContent = ' <form>' +
 
 var changeClassDialogContent = ' <form>' +
 
-    '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>开始时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test2" placeholder="点击此处选择日期与时间" lay-key="3">' +
-    '</div>' +
-    '</div>' +
-
-    '</div>' +
-
 
     '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>结束时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test2-1" placeholder="点击此处选择日期与时间" lay-key="4">' +
-    '</div>' +
+    '<p>开始时间 : </p>' +
+    '<input type="text" id="start_time" data-field="datetime" >' +
+    '<div id="start_picker"></div>' +
     '</div>' +
 
+    '<div class="row">' +
+    '<p>结束时间 : </p>' +
+    '<input type="text" id="end_time" data-field="datetime" >' +
+    '<div id="end_picker"></div>' +
     '</div>' +
 
 
@@ -452,29 +432,18 @@ var lessonListContent = '<div class="card-panel" style="background-color: rgba(2
 
 var addLessonDialogContent = ' <form>' +
 
-    '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>开始时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test1" placeholder="点击此处选择日期与时间" lay-key="1">' +
-    '</div>' +
-    '</div>' +
-
-    '</div>' +
-
 
     '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>结束时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test1-1" placeholder="点击此处选择日期与时间" lay-key="2">' +
-    '</div>' +
+    '<p>开始时间 : </p>' +
+    '<input type="text" id="start_time" data-field="datetime" >' +
+    '<div id="start_picker"></div>' +
     '</div>' +
 
+    '<div class="row">' +
+    '<p>结束时间 : </p>' +
+    '<input type="text" id="end_time" data-field="datetime" >' +
+    '<div id="end_picker"></div>' +
     '</div>' +
-
 
     '<div class="row">' +
     '<div class="input-field col s12" id="teacher_input">' +
@@ -502,27 +471,16 @@ var addLessonDialogContent = ' <form>' +
 
 var changeLessonDialogContent = ' <form>' +
 
-   '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>开始时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test2" placeholder="点击此处选择日期与时间" lay-key="3">' +
+    '<div class="row">' +
+    '<p>开始时间 : </p>' +
+    '<input type="text" id="start_time" data-field="datetime" >' +
+    '<div id="start_picker"></div>' +
     '</div>' +
-    '</div>' +
-
-    '</div>' +
-
 
     '<div class="row">' +
-
-    '<div class="layui-inline">' +
-    '<label>结束时间</label>' +
-    '<div class="layui-input-inline">' +
-    '<input type="text" class="layui-input" id="test2-1" placeholder="点击此处选择日期与时间" lay-key="4">' +
-    '</div>' +
-    '</div>' +
-
+    '<p>结束时间 : </p>' +
+    '<input type="text" id="end_time" data-field="datetime" >' +
+    '<div id="end_picker"></div>' +
     '</div>' +
 
     '<div class="row">' +
