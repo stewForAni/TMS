@@ -105,3 +105,20 @@ var TMS_CLASS_MODIFY_DATA = "class/update";
 
 
 
+///////////////////////////////////////
+
+
+//课次管理
+var TMS_LESSON_LIST_DATA = "course/list";
+
+//删除课次管理
+var TMS_LESSON_DELETE_DATA = "course/delete";
+
+//添加课次管理
+var TMS_LESSON_ADD_DATA = "course/add";
+
+//修改课次管理
+var TMS_LESSON_MODIFY_DATA = "course/update";
+
+
+

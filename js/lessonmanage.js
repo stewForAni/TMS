@@ -34,7 +34,7 @@
 
  function refleshLessonList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/list",
+         url: TMS_BASE_URL+TMS_LESSON_LIST_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -50,7 +50,7 @@
 
  function getTeacherDataForAddClass() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
+         url: TMS_BASE_URL + TMS_TEACHER_LIST_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -184,7 +184,7 @@
 
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/add",
+         url: TMS_BASE_URL + TMS_LESSON_ADD_DATA,
          type: "POST",
          cache: false,
          data: formdata,
@@ -264,7 +264,7 @@
  function chnageLessonApi(val1, val2, val3, val4, val5) {
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/upload",
+         url: TMS_BASE_URL + TMS_LESSON_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { teacherId: val3, start_time: val1, end_time: val2, classId: classId },

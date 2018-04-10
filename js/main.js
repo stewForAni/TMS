@@ -769,7 +769,6 @@
              refleshSubjectList();
          }
      });
-,.
  }
 
 
