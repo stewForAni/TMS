@@ -302,7 +302,7 @@ var classListContent = '<div class="card-panel" style="background-color: rgba(25
     '<thead>' +
     '<tr>' +
     '<th>班级ID</th>' +
-    '<th>名称</th>' +
+    '<th>班级名称</th>' +
     '<th>课时</th>' +
     '<th>老师</th>' +
     '<th>开始时间</th>' +
@@ -446,9 +446,6 @@ var addLessonDialogContent = ' <form>' +
     '</div>' +
 
 
-
-
-
     '<div class="row">' +
     '<div class="input-field col s12" id="teacher_input">' +
     '<select id="add_teacher_select">' +
@@ -458,13 +455,19 @@ var addLessonDialogContent = ' <form>' +
     '</div>' +
 
     '<div class="row">' +
-    '<form enctype="multipart/form-data">' +
-    '<input name="file" type="file" />' +
-    '<input type="button" value="Upload" />' +
+    '<form enctype="multipart/form-data" id="file_form">' +
+    '<input id="add_file" name="file" type="file" />' +
     '</form>' +
-    '<progress></progress>' +
     '</div>' +
 
+    '</form>';
+
+
+
+var progressContent = ' <form>' +
+    '<div class="progress" id="progress">' +
+    // '<div class="determinate" style="width: 70%"></div>' +
+    '</div>' +
     '</form>';
 
 

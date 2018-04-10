@@ -67,7 +67,7 @@
          var newdata = '<tr><td>' +
              predata.id +
              '</td><td>' +
-             predata.className +
+             predata.className + "("+time1+"--"+time2+")"+
              '</td><td>' +
              predata.classHours +
              '</td><td>' +
@@ -165,8 +165,8 @@
      $('select').material_select();
 
 
-     $("#start_picker").DateTimePicker();
-     $("#end_picker").DateTimePicker();
+     $('#start_picker').DateTimePicker();
+     $('#end_picker').DateTimePicker();
  }
 
  function addClassApi(p1, p2, p3, p4, p5) {
@@ -236,8 +236,8 @@
 
 
 
-     $("#start_picker").DateTimePicker();
-     $("#end_picker").DateTimePicker();
+     $('#start_picker').DateTimePicker();
+     $('#end_picker').DateTimePicker();
 
 
  }

@@ -112,6 +112,9 @@
 
  function showAddLessonDialog() {
 
+     var file;
+     var name;
+
      dialog1 = dialog({
          width: 400,
          title: '添加课次',
@@ -119,16 +122,28 @@
          okValue: '确定',
          ok: function() {
 
-             var val1 = $("#test1").val();
-             var val2 = $("#test1-1").val();
+             var val1 = $("#start_time").val();
+             var val2 = $("#end_time").val();
              var val3 = $("#add_teacher_select").val();
-             var val4 = $("#start_time").val();
-             var val5 = $("#end_time").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
-                 alert("输入有误！");
+             if (isEmpty(file) || isEmpty(name) || (name != "pdf")) {
+
+                 alert("文件错误,必须是PDF文件！");
+
              } else {
-                 addLessonApi(val1, val2, val3, val4, val5);
+
+                 if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                     alert("信息输入有误！");
+                 } else {   
+                     var formData = new FormData();
+                     formData.append('teacherId', val3);
+                     formData.append('start_time', val1);
+                     formData.append('end_time', val2);
+                     formData.append('classId', classId);
+                     formData.append('file',file);
+                     addLessonApi(formData);
+                 }
+
              }
 
          },
@@ -145,20 +160,44 @@
      dialog1.showModal();
      $('select').material_select();
 
-     $("#start_picker").DateTimePicker();
-     $("#end_picker").DateTimePicker();
+     $('#start_picker').DateTimePicker();
+     $('#end_picker').DateTimePicker();
 
+     $('#add_file').change(function() {
+         file = this.files[0];
+         name = file.name.substring(file.name.length - 3, file.name.length);
+     });
 
  }
 
 
- function addLessonApi(val1, val2, val3, val4, val5) {
+ function addLessonApi(formdata) {
+
+
+     var progressDialog = dialog({
+         width: 300,
+         title: '上传课件中，请稍等...',
+         content: progressContent,
+     });
+
+     progressDialog.showModal();
+
 
      $.ajax({
          url: "http://47.88.153.88:8080/app-cms-web/v1/web/course/add",
          type: "POST",
          cache: false,
-         data: { teacherId: val3, start_time: val1, end_time: val2, classId: classId },
+         data: formdata,
+
+         xhr: function() { // custom xhr
+             myXhr = $.ajaxSettings.xhr();
+             if (myXhr.upload) { // check if upload property exists
+                 myXhr.upload.addEventListener('progress', progressHandlingFunction, false); // for handling the progress of the upload
+             }
+             return myXhr;
+         },
+         processData: false,
+         contentType: false,
          success: function(result) {
              refleshLessonList();
          }
@@ -166,6 +205,16 @@
 
 
  }
+
+
+ function progressHandlingFunction(e) {
+     if (e.lengthComputable) {
+         $('progress').attr({ value: e.loaded, max: e.total });
+     }
+ }
+
+
+
 
  function showChangeDialog1(data) {
 
@@ -195,7 +244,7 @@
      });
 
      var teacherList = teacherData.data.list;
-     
+
      for (var j = 0; j < teacherList.length; j++) {
          $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
      }
@@ -206,8 +255,8 @@
      $('#start_time').val(data.start_time);
      $('#end_time').val(data.end_time);
 
-     $("#start_picker").DateTimePicker();
-     $("#end_picker").DateTimePicker();
+     $('#start_picker').DateTimePicker();
+     $('#end_picker').DateTimePicker();
 
  }
 

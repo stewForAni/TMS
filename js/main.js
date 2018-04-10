@@ -98,7 +98,7 @@
  //获取首页年级信息列表数据
  function getGradeDataForTeacherList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/list",
+         url: TMS_BASE_URL + TMS_GRADE_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -110,7 +110,7 @@
  //获取首页科目信息列表数据
  function getSubjectDataForTeacherList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/list",
+         url: TMS_BASE_URL + TMS_SUBJECT_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -136,7 +136,7 @@
      token = obj.p3;
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
+         url: TMS_BASE_URL + TMS_TEACHER_LIST_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -194,7 +194,7 @@
 
  function deleteTeacher(deleteId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/delete",
+         url: TMS_BASE_URL + TMS_TEACHER_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: deleteId, loginName: userName },
@@ -256,7 +256,7 @@
      }
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/add",
+         url: TMS_BASE_URL + TMS_TEACHER_ADD_DATA,
          type: "POST",
          cache: false,
          data: { teacherName: p3, password: p4, subjectId: p1, grades: g },
@@ -295,7 +295,7 @@
 
 
      var subjectlist = subjectData.data.list;
-     
+
      var gradelist = gradeData.data.list;
 
      for (var i = 0; i < subjectlist.length; i++) {
@@ -325,7 +325,7 @@
      }
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/update",
+         url: TMS_BASE_URL + TMS_TEACHER_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { teacherName: p3, password: p4, subjectId: p1, grades: g },
@@ -355,7 +355,7 @@
  //获取首页学期管理列表数据以及逻辑处理
  function getTermData() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/term/list",
+         url: TMS_BASE_URL + TMS_TERM_LIST_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -410,7 +410,7 @@
 
  function deleteTermApi(p) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/term/delete",
+         url: TMS_BASE_URL + TMS_TERM_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: p.id, loginName: userName },
@@ -446,7 +446,7 @@
 
  function changeTermApi(p, termId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/term/update",
+         url: TMS_BASE_URL + TMS_TERM_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { id: termId, termName: p },
@@ -478,7 +478,7 @@
 
  function addTermApi(p) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/term/add",
+         url: TMS_BASE_URL + TMS_TERM_ADD_DATA,
          type: "POST",
          cache: false,
          data: { termName: p },
@@ -506,7 +506,7 @@
 
  function getGradeData() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/list",
+         url: TMS_BASE_URL + TMS_GRADE_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -552,7 +552,7 @@
 
  function deleteGradeApi(gradeId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/delete",
+         url: TMS_BASE_URL + TMS_GRADE_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: gradeId, loginName: userName },
@@ -588,7 +588,7 @@
 
  function changeGradeApi(p, gradeId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/update",
+         url: TMS_BASE_URL + TMS_GRADE_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { id: gradeId, gradeName: p },
@@ -623,7 +623,7 @@
 
  function addGradeApi(p) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/add",
+         url: TMS_BASE_URL + TMS_GRADE_ADD_DATA,
          type: "POST",
          cache: false,
          data: { gradeName: p },
@@ -652,7 +652,7 @@
 
  function getSubjectData() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/list",
+         url: TMS_BASE_URL + TMS_SUBJECT_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -747,7 +747,7 @@
 
  function addSubjectApi(p) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/add",
+         url: TMS_BASE_URL + TMS_SUBJECT_ADD_DATA,
          type: "POST",
          cache: false,
          data: { subjectName: p },
@@ -761,7 +761,7 @@
 
  function changeSubjectApi(p, subjectId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/update",
+         url: TMS_BASE_URL + TMS_SUBJECT_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { id: subjectId, subjectName: p },
@@ -769,13 +769,13 @@
              refleshSubjectList();
          }
      });
-
+,.
  }
 
 
  function deleteSubjectApi(subjectId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/delete",
+         url: TMS_BASE_URL + TMS_SUBJECT_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: subjectId, loginName: userName },
@@ -799,32 +799,6 @@
  //                                              //
  //                                              //
  //////////////////////////////////////////////////
-
-
-
- function confirmDialog() {
-     dialog2 = dialog({
-         content: '确认修改？',
-         okValue: '确认',
-         ok: function() {
-             confirmDeal();
-         },
-         cancelValue: '取消',
-         cancel: function() {}
-     });
-     dialog2.showModal();
- }
-
- function confirmDeal() {
-     laodingDialog.showModal();
-     dialog1.remove();
-     dialog2.remove();
-
-     setTimeout(function() {
-         laodingDialog.close();
-     }, 2000);
-
- }
 
 
 
