@@ -37,6 +37,7 @@
          url: TMS_BASE_URL+TMS_LESSON_LIST_DATA,
          type: "POST",
          cache: false,
+         data:{classId:classId},
          success: function(result) {
              dealdata1(result);
          }
@@ -65,19 +66,22 @@
      $('#main_content').empty();
      $('#main_content').append(lessonListContent);
 
-     for (var i = 0; i < msg1.data.length; i++) {
+     for (var i = 0; i < msg1.data.list.length; i++) {
 
-         var predata = msg1.data[i];
+         var predata = msg1.data.list[i];
+         var time1 = predata.startTime.substring(11);
+         var time2 = predata.endTime.substring(11);
+
          var newdata = '<tr><td>' +
-             predata.lesson_id +
+             predata.courseId +
              '</td><td>' +
-             predata.start_time +
+             time1 +
              '</td><td>' +
-             predata.end_time +
+             time2 +
              '</td><td>' +
-             predata.material +
+             predata.fileName +
              '</td><td>' +
-             predata.teacher +
+             predata.teacherName +
              '</td><td><button class="btn waves-effect waves-light blue" id="change' + i + '">修改</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="delete' + i + '">删除</button>' +
              '</td></tr>"'
