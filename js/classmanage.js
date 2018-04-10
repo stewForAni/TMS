@@ -30,7 +30,7 @@
 
  function refleshClassList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/list",
+         url: TMS_BASE_URL + TMS_CLASS_LIST_DATA,
          type: "POST",
          cache: false,
          data: { gradeSubjectId: courseId },
@@ -44,7 +44,7 @@
 
  function getTeacherDataForAddClass() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/teacher/list",
+         url: TMS_BASE_URL + TMS_TEACHER_LIST_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -67,7 +67,7 @@
          var newdata = '<tr><td>' +
              predata.id +
              '</td><td>' +
-             predata.className + "("+time1+"--"+time2+")"+
+             predata.className + "(" + time1 + "--" + time2 + ")" +
              '</td><td>' +
              predata.classHours +
              '</td><td>' +
@@ -119,7 +119,7 @@
  function deleteClassApi(data) {
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/delete",
+         url: TMS_BASE_URL + TMS_CLASS_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: data.id, loginName: userName },
@@ -142,8 +142,8 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#add_teacher_select").val();
 
-             var val4 = $("#start_time").val()+":00";
-             var val5 = $("#end_time").val()+":00";
+             var val4 = $("#start_time").val() + ":00";
+             var val5 = $("#end_time").val() + ":00";
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
@@ -172,7 +172,7 @@
  function addClassApi(p1, p2, p3, p4, p5) {
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/add",
+         url: TMS_BASE_URL + TMS_CLASS_ADD_DATA,
          type: "POST",
          cache: false,
          data: {
@@ -244,7 +244,7 @@
 
  function changeClassApi(p1, p2, p3, classId, p4, p5) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/class/update",
+         url: TMS_BASE_URL + TMS_CLASS_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: {

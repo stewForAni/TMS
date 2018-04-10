@@ -31,7 +31,7 @@
 
  function refleshCourseList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/gradesubject/list",
+         url: TMS_BASE_URL + TMS_COURSE_LIST_DATA,
          type: "POST",
          cache: false,
          data: { termId: termId },
@@ -46,7 +46,7 @@
 
  function getGradeDataForTeacherList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/grade/list",
+         url: TMS_BASE_URL + TMS_GRADE_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -57,7 +57,7 @@
 
  function getSubjectDataForTeacherList() {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/suject/list",
+         url: TMS_BASE_URL + TMS_SUBJECT_DATA,
          type: "POST",
          cache: false,
          success: function(result) {
@@ -107,7 +107,7 @@
          (function(predata) {
 
              $("#classmanage" + i).click(function() {
-                     var url = "classmanage.html?courseId=" + predata.id + "&name=" + userName;
+                 var url = "classmanage.html?courseId=" + predata.id + "&name=" + userName;
                  window.location.href = url;
              });
 
@@ -123,7 +123,7 @@
 
  function deleteCourseApi(data) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/gradesubject/delete",
+         url: TMS_BASE_URL + TMS_COURSE_DELETE_DATA,
          type: "POST",
          cache: false,
          data: { id: data.id, loginName: userName },
@@ -175,7 +175,7 @@
 
  function changeCourseApi(id, val1, val2, termId) {
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/gradesubject/update",
+         url: TMS_BASE_URL + TMS_COURSE_MODIFY_DATA,
          type: "POST",
          cache: false,
          data: { id: id, subjectId: val1, gradeId: val2, termId: termId },
@@ -226,7 +226,7 @@
  function addCourseApi(val1, val2, termId) {
 
      $.ajax({
-         url: "http://47.88.153.88:8080/app-cms-web/v1/web/gradesubject/add",
+         url: TMS_BASE_URL + TMS_COURSE_ADD_DATA,
          type: "POST",
          cache: false,
          data: { subjectId: val1, gradeId: val2, termId: termId },

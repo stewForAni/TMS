@@ -75,4 +75,33 @@ var TMS_TERM_MODIFY_DATA = "term/update";
 ///////////////////////////////////////
 
 
+//课程管理
+var TMS_COURSE_LIST_DATA = "gradesubject/list";
+
+//删除课程管理
+var TMS_COURSE_DELETE_DATA = "gradesubject/delete";
+
+//添加课程管理
+var TMS_COURSE_ADD_DATA = "gradesubject/add";
+
+//修改课程管理
+var TMS_COURSE_MODIFY_DATA = "gradesubject/update";
+
+
+///////////////////////////////////////
+
+
+//班级管理
+var TMS_CLASS_LIST_DATA = "class/list";
+
+//删除班级管理
+var TMS_CLASS_DELETE_DATA = "class/delete";
+
+//添加班级管理
+var TMS_CLASS_ADD_DATA = "class/add";
+
+//修改班级管理
+var TMS_CLASS_MODIFY_DATA = "class/update";
+
+
 
