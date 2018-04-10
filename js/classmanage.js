@@ -62,6 +62,8 @@
      for (var i = 0; i < msg.data.list.length; i++) {
 
          var predata = msg.data.list[i];
+         var time1 = predata.startTime.substring(11);
+         var time2 = predata.endTime.substring(11);
          var newdata = '<tr><td>' +
              predata.id +
              '</td><td>' +
@@ -71,9 +73,9 @@
              '</td><td>' +
              predata.teacherName +
              '</td><td>' +
-             predata.startTime +
+             time1 +
              '</td><td>' +
-             predata.endTime +
+             time2 +
              '</td><td><button class="btn waves-effect waves-light orange" id="classcountmanage' + i + '">课次管理</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="change' + i + '">修改</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="delete' + i + '">删除</button>' +
@@ -140,8 +142,8 @@
              var val2 = $("#coursehours").val();
              var val3 = $("#add_teacher_select").val();
 
-             var val4 = $("#start_time").val();
-             var val5 = $("#end_time").val();
+             var val4 = $("#start_time").val()+":00";
+             var val5 = $("#end_time").val()+":00";
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");

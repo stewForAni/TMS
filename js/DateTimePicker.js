@@ -45,7 +45,7 @@ $.DateTimePicker = $.DateTimePicker || {
 		dateTimeSeparator: " ",
 		monthYearSeparator: " ",
 	
-		dateTimeFormat: "yyyy-MM-dd HH:mm:ss",
+		dateTimeFormat: "yyyy-MM-dd HH:mm",
 		dateFormat: "dd-MM-yyyy",
 		timeFormat: "HH:mm",
 	
@@ -76,8 +76,8 @@ $.DateTimePicker = $.DateTimePicker || {
 		titleContentDateTime: "设置时间和日期",
 	
 		buttonsToDisplay: ["HeaderCloseButton", "SetButton", "ClearButton"],
-		setButtonContent: "Set",
-		clearButtonContent: "Clear",
+		setButtonContent: "设置",
+		clearButtonContent: "清除",
     	incrementButtonContent: "+",
     	decrementButtonContent: "-",
 		setValueInTextboxOnEveryClick: false,

@@ -445,7 +445,7 @@ var addLessonDialogContent = ' <form>' +
     '<div id="end_picker"></div>' +
     '</div>' +
 
-    
+
 
 
 
@@ -457,7 +457,7 @@ var addLessonDialogContent = ' <form>' +
     '</div>' +
     '</div>' +
 
-'<div class="row">' +
+    '<div class="row">' +
     '<form enctype="multipart/form-data">' +
     '<input name="file" type="file" />' +
     '<input type="button" value="Upload" />' +

@@ -15,7 +15,7 @@
 	display:none;
 	min-width: 300px;
 
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.3);
 	font-size: 12px;
 
 	-webkit-touch-callout: none;
@@ -100,7 +100,7 @@
 
 .dtpicker-header .dtpicker-title
 {
-	color: #2980B9;
+	color: #278eef;
 	text-align: center;
 	font-size: 1.1em;
 }
@@ -194,7 +194,7 @@
 	display: block;
 	height: 30px;
 
-	color: #2980B9;
+	color: #278eef;
 
 	text-align: center;
 	line-height: 30px;
@@ -202,7 +202,7 @@
 
 .dtpicker-components .dtpicker-comp > *:hover
 {
-	color: #2980B9;
+	color: #278eef;
 }
 
 .dtpicker-components .dtpicker-compButtonEnable
@@ -253,7 +253,7 @@
 	display: block;
 	padding: 0.6em 0;
 	width: 47%;
-	background: #FF3B30;
+	background: #278eef;
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 1.3em;
