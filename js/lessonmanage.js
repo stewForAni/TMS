@@ -96,7 +96,7 @@
          (function(predata) {
 
              $("#delete" + i).click(function() {
-
+                 deleteLessonApi(predata);
              });
 
          })(predata);
@@ -110,6 +110,18 @@
 
  }
 
+
+ function deleteLessonApi(data) {
+     $.ajax({
+         url: TMS_BASE_URL + TMS_LESSON_DELETE_DATA,
+         type: "POST",
+         cache: false,
+         data: { id: data.courseId},
+         success: function(result) {
+             refleshLessonList();
+         }
+     });
+ }
 
  function showAddLessonDialog() {
 
@@ -191,10 +203,19 @@
          xhr: function() { // custom xhr
              myXhr = $.ajaxSettings.xhr();
              if (myXhr.upload) { // check if upload property exists
-                 myXhr.upload.addEventListener('progress', progressHandlingFunction, false); // for handling the progress of the upload
+                 myXhr.upload.addEventListener('progress', function(e) {
+                     if (e.lengthComputable) {
+                         $('progress').attr({
+                             value: e.loaded,
+                             max: e.total,
+                         });
+
+                     }
+                 }, false); // for handling the progress of the upload
              }
              return myXhr;
          },
+
          processData: false,
          contentType: false,
          success: function(result) {
