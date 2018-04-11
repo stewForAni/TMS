@@ -285,7 +285,7 @@
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4)) {
                  alert("输入有误！");
              } else {
-                 changeTeacherApi(val1, val2, val3, val4);
+                 changeTeacherApi(val1, val2, val3, val4, data.id);
              }
 
          },
@@ -303,7 +303,7 @@
      }
 
      for (var j = 0; j < gradelist.length; j++) {
-         $('#change_grade_select').append('<option value="' + gradelist[i].id + '">' + gradelist[i].gradeName + '</option>');
+         $('#change_grade_select').append('<option value="' + gradelist[j].id + '">' + gradelist[j].gradeName + '</option>');
      }
 
      dialog1.showModal();
@@ -314,7 +314,7 @@
  }
 
 
- function changeTeacherApi(p1, p2, p3, p4) {
+ function changeTeacherApi(p1, p2, p3, p4, Id) {
      var g = "";
      for (var i = 0; i < p2.length; i++) {
          if (i == p2.length - 1) {
@@ -328,7 +328,7 @@
          url: TMS_BASE_URL + TMS_TEACHER_MODIFY_DATA,
          type: "POST",
          cache: false,
-         data: { teacherName: p3, password: p4, subjectId: p1, grades: g },
+         data: { teacherName: p3, password: p4, subjectId: p1, grades: g, id: Id },
          success: function(result) {
              refleshTeacherList();
          }

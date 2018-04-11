@@ -7,7 +7,6 @@
  });
 
 
-
  var classId;
  var userName;
  var teacherData;
@@ -28,24 +27,22 @@
 
      classId = obj.classId;
      userName = obj.name;
-
      refleshLessonList();
+
  });
 
  function refleshLessonList() {
      $.ajax({
-         url: TMS_BASE_URL+TMS_LESSON_LIST_DATA,
+         url: TMS_BASE_URL + TMS_LESSON_LIST_DATA,
          type: "POST",
          cache: false,
-         data:{classId:classId},
+         data: { classId: classId },
          success: function(result) {
              dealdata1(result);
          }
      });
 
-
      getTeacherDataForAddClass();
-
 
  }
 
@@ -141,10 +138,10 @@
                  } else {   
                      var formData = new FormData();
                      formData.append('teacherId', val3);
-                     formData.append('start_time', val1);
-                     formData.append('end_time', val2);
+                     formData.append('startTime', val1);
+                     formData.append('endTime', val2);
                      formData.append('classId', classId);
-                     formData.append('file',file);
+                     formData.append('file', file);
                      addLessonApi(formData);
                  }
 
@@ -158,7 +155,7 @@
      var teacherList = teacherData.data.list;
 
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
+         $('#add_teacher_select').append('<option value="' + teacherList[j].teacherId + '">' + teacherList[j].teacherId + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();
@@ -177,7 +174,6 @@
 
  function addLessonApi(formdata) {
 
-
      var progressDialog = dialog({
          width: 300,
          title: '上传课件中，请稍等...',
@@ -185,7 +181,6 @@
      });
 
      progressDialog.showModal();
-
 
      $.ajax({
          url: TMS_BASE_URL + TMS_LESSON_ADD_DATA,
@@ -211,16 +206,11 @@
  }
 
 
- function progressHandlingFunction(e) {
-     if (e.lengthComputable) {
-         $('progress').attr({ value: e.loaded, max: e.total });
-     }
- }
-
-
-
 
  function showChangeDialog1(data) {
+
+     var file;
+     var name;
 
      dialog1 = dialog({
          width: 400,
@@ -230,15 +220,39 @@
 
          ok: function() {
 
-             var val1 = $("#test2").val();
-             var val2 = $("#test2-1").val();
+             var val1 = $("#start_time").val();
+             var val2 = $("#end_time").val();
              var val3 = $("#change_teacher_select").val();
-             var val4 = $("#start_time").val();
-             var val5 = $("#end_time").val();
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
-                 alert("输入有误！");
+
+
+             if (val1.length < 19) {
+                 val1 = val1 + ":00";
+             }
+
+             if (val2.length < 19) {
+                 val2 = val2 + ":00";
+             }
+
+
+             if (isEmpty(file) || isEmpty(name) || (name != "pdf")) {
+
+                 alert("文件错误,必须是PDF文件！");
+
              } else {
-                 chnageLessonApi(val1, val2, val3);
+
+                 if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                     alert("信息输入有误！");
+                 } else {   
+                     var formData = new FormData();
+                     formData.append('teacherId', val3);
+                     formData.append('startTime', val1);
+                     formData.append('endTime', val2);
+                     formData.append('classId', classId);
+                     formData.append('file', file);
+                     formData.append('id', data.courseId);
+                     changeLessonApi(formData);
+                 }
+
              }
 
          },
@@ -250,29 +264,63 @@
      var teacherList = teacherData.data.list;
 
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
+         $('#change_teacher_select').append('<option value="' + teacherList[j].teacherId + '">' + teacherList[j].teacherId + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();
      $('select').material_select();
 
-     $('#start_time').val(data.start_time);
-     $('#end_time').val(data.end_time);
+     $('#start_time').val(data.startTime);
+     $('#end_time').val(data.endTime);
 
      $('#start_picker').DateTimePicker();
      $('#end_picker').DateTimePicker();
 
+
+     $('#change_file').change(function() {
+         file = this.files[0];
+         name = file.name.substring(file.name.length - 3, file.name.length);
+     });
+
  }
 
 
- function chnageLessonApi(val1, val2, val3, val4, val5) {
+ function changeLessonApi(data) {
+
+     var progressDialog = dialog({
+         width: 300,
+         title: '上传课件中，请稍等...',
+         content: progressContent,
+     });
+
+     progressDialog.showModal();
 
      $.ajax({
          url: TMS_BASE_URL + TMS_LESSON_MODIFY_DATA,
          type: "POST",
          cache: false,
-         data: { teacherId: val3, start_time: val1, end_time: val2, classId: classId },
+         data: data,
+
+         xhr: function() { // custom xhr
+             myXhr = $.ajaxSettings.xhr();
+             if (myXhr.upload) { // check if upload property exists
+                 myXhr.upload.addEventListener('progress', function(e) {
+                     if (e.lengthComputable) {
+                         $('progress').attr({
+                             value: e.loaded,
+                             max: e.total,
+                         });
+
+                     }
+                 }, false); // for handling the progress of the upload
+             }
+             return myXhr;
+         },
+
+         processData: false,
+         contentType: false,
          success: function(result) {
+             progressDialog.remove();
              refleshLessonList();
          }
      });

@@ -118,7 +118,7 @@ var TMS_LESSON_DELETE_DATA = "course/delete";
 var TMS_LESSON_ADD_DATA = "course/add";
 
 //修改课次管理
-var TMS_LESSON_MODIFY_DATA = "course/update";
+var TMS_LESSON_MODIFY_DATA = "course/upload";
 
 
 

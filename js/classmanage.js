@@ -158,7 +158,7 @@
      var teacherList = teacherData.data.list;
 
      for (var j = 0; j < teacherList.length; j++) {
-         $('#add_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
+         $('#add_teacher_select').append('<option value="' + teacherList[j].teacherId + '">' + teacherList[j].teacherId + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();
@@ -207,6 +207,15 @@
              var val4 = $("#start_time").val();
              var val5 = $("#end_time").val();
 
+
+             if (val4.length < 19) {
+                 val4 = val4 + ":00";
+             }
+
+             if (val5.length < 19) {
+                 val5 = val5 + ":00";
+             }
+
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
                  alert("输入有误！");
              } else {
@@ -222,7 +231,7 @@
 
      var teacherList = teacherData.data.list;
      for (var j = 0; j < teacherList.length; j++) {
-         $('#change_teacher_select').append('<option value="' + teacherList[j].id + '">' + teacherList[j].id + "." + teacherList[j].teacherName + '</option>');
+         $('#change_teacher_select').append('<option value="' + teacherList[j].teacherId + '">' + teacherList[j].teacherId + "." + teacherList[j].teacherName + '</option>');
      }
 
      dialog1.showModal();

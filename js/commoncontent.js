@@ -464,11 +464,7 @@ var addLessonDialogContent = ' <form>' +
 
 
 
-var progressContent = ' <form>' +
-    '<div class="progress" id="progress">' +
-    // '<div class="determinate" style="width: 70%"></div>' +
-    '</div>' +
-    '</form>';
+var progressContent ='<progress max="100" value="0" style="width:300px;"></progress>';
 
 
 
@@ -488,20 +484,16 @@ var changeLessonDialogContent = ' <form>' +
 
     '<div class="row">' +
     '<div class="input-field col s12" id="teacher_input">' +
-    '<select id="change_m_select">' +
-    '</select>' +
-    '<label>教材</label>' +
-    '</div>' +
-    '</div>' +
-
-
-
-    '<div class="row">' +
-    '<div class="input-field col s12" id="teacher_input">' +
     '<select id="change_teacher_select">' +
     '</select>' +
     '<label>老师</label>' +
     '</div>' +
+    '</div>' +
+
+    '<div class="row">' +
+    '<form enctype="multipart/form-data" id="file_form">' +
+    '<input id="change_file" name="file" type="file" />' +
+    '</form>' +
     '</div>' +
 
     '</form>';
