@@ -75,9 +75,7 @@
              time1 +
              '</td><td>' +
              time2 +
-             '</td><td>' +
-             predata.fileName +
-             '</td><td>' +
+             '</td><td><a href="http://47.88.153.88:8080/app-cms-web/v1/web/course/downLoad?id=' + predata.courseId + '" target="_blank">' + predata.fileName + '</a></td><td>' +
              predata.teacherName +
              '</td><td><button class="btn waves-effect waves-light blue" id="change' + i + '">修改</button>' +
              '</td><td><button class="btn waves-effect waves-light blue" id="delete' + i + '">删除</button>' +
@@ -116,7 +114,7 @@
          url: TMS_BASE_URL + TMS_LESSON_DELETE_DATA,
          type: "POST",
          cache: false,
-         data: { id: data.courseId},
+         data: { id: data.courseId },
          success: function(result) {
              refleshLessonList();
          }
@@ -219,6 +217,7 @@
          processData: false,
          contentType: false,
          success: function(result) {
+             progressDialog.remove();
              refleshLessonList();
          }
      });
