@@ -146,10 +146,13 @@
 
              var val1 = $("#change_subject_select").val();
              var val2 = $("#change_grade_select").val();
-             if (isEmpty(val1) || isEmpty(val2)) {
+             var val3 = $("#change_subject_select").text() + $("#change_grade_select").text();
+
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
+                 return false;
              } else {
-                 changeCourseApi(data.id, val1, val2, termId);
+                 changeCourseApi(data.id, val1, val2, termId, val3);
              }
 
          },
@@ -173,12 +176,12 @@
 
  }
 
- function changeCourseApi(id, val1, val2, termId) {
+ function changeCourseApi(id, val1, val2, termId, val3) {
      $.ajax({
          url: TMS_BASE_URL + TMS_COURSE_MODIFY_DATA,
          type: "POST",
          cache: false,
-         data: { id: id, subjectId: val1, gradeId: val2, termId: termId },
+         data: { id: id, subjectId: val1, gradeId: val2, termId: termId, name: val3 },
          success: function(result) {
              refleshCourseList();
          }
@@ -197,10 +200,13 @@
 
              var val1 = $("#add_subject_select").val();
              var val2 = $("#add_grade_select").val();
-             if (isEmpty(val1) || isEmpty(val2)) {
+             var val3 = $("#add_subject_select").text() + $("#add_grade_select").text();
+
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
+                 return false;
              } else {
-                 addCourseApi(val1, val2, termId);
+                 addCourseApi(val1, val2, termId, val3);
              }
 
          },
@@ -223,13 +229,18 @@
      $('select').material_select();
  }
 
- function addCourseApi(val1, val2, termId) {
+ function addCourseApi(val1, val2, termId, val3) {
 
      $.ajax({
          url: TMS_BASE_URL + TMS_COURSE_ADD_DATA,
          type: "POST",
          cache: false,
-         data: { subjectId: val1, gradeId: val2, termId: termId },
+         data: {
+             subjectId: val1,
+             gradeId: val2,
+             termId: termId,
+             name: val3
+         },
          success: function(result) {
              refleshCourseList();
          }

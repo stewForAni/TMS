@@ -24,7 +24,6 @@
          }
      }
 
-
      classId = obj.classId;
      userName = obj.name;
      refleshLessonList();
@@ -66,11 +65,13 @@
      for (var i = 0; i < msg1.data.list.length; i++) {
 
          var predata = msg1.data.list[i];
-         var time1 = predata.startTime.substring(11);
-         var time2 = predata.endTime.substring(11);
+         var time1 = predata.startTime.substring(0, 17);
+         var time2 = predata.endTime.substring(0, 17);
 
          var newdata = '<tr><td>' +
              predata.courseId +
+             '</td><td>' +
+             predata.courseName +
              '</td><td>' +
              time1 +
              '</td><td>' +
@@ -140,11 +141,13 @@
              if (isEmpty(file) || isEmpty(name) || (name != "pdf")) {
 
                  alert("文件错误,必须是PDF文件！");
+                 return false;
 
              } else {
 
                  if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                      alert("信息输入有误！");
+                     return false;
                  } else {   
                      var formData = new FormData();
                      formData.append('teacherId', val3);
@@ -244,7 +247,6 @@
              var val2 = $("#end_time").val();
              var val3 = $("#change_teacher_select").val();
 
-
              if (val1.length < 19) {
                  val1 = val1 + ":00";
              }
@@ -253,26 +255,24 @@
                  val2 = val2 + ":00";
              }
 
-
-             if (isEmpty(file) || isEmpty(name) || (name != "pdf")) {
-
+             if (!isEmpty(file) && (name != "pdf")) {
                  alert("文件错误,必须是PDF文件！");
+                 return false;
+             }
 
-             } else {
 
-                 if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
-                     alert("信息输入有误！");
-                 } else {   
-                     var formData = new FormData();
-                     formData.append('teacherId', val3);
-                     formData.append('startTime', val1);
-                     formData.append('endTime', val2);
-                     formData.append('classId', classId);
-                     formData.append('file', file);
-                     formData.append('id', data.courseId);
-                     changeLessonApi(formData);
-                 }
-
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                 alert("信息输入有误！");
+                 return false;
+             } else {   
+                 var formData = new FormData();
+                 formData.append('teacherId', val3);
+                 formData.append('startTime', val1);
+                 formData.append('endTime', val2);
+                 formData.append('classId', classId);
+                 formData.append('file', file);
+                 formData.append('id', data.courseId);
+                 changeLessonApi(formData);
              }
 
          },

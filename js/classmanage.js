@@ -62,8 +62,8 @@
      for (var i = 0; i < msg.data.list.length; i++) {
 
          var predata = msg.data.list[i];
-         var time1 = predata.startTime.substring(11);
-         var time2 = predata.endTime.substring(11);
+         var time1 = predata.startTime.substring(11, 17);
+         var time2 = predata.endTime.substring(11, 17);
          var newdata = '<tr><td>' +
              predata.id +
              '</td><td>' +
@@ -141,14 +141,15 @@
              var val1 = $("#name").val();
              var val2 = $("#coursehours").val();
              var val3 = $("#add_teacher_select").val();
-
              var val4 = $("#start_time").val() + ":00";
              var val5 = $("#end_time").val() + ":00";
+             var val6 = $("#add_interval_time").val();
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5) || isEmpty(val6)) {
                  alert("输入有误！");
+                 return false;
              } else {
-                 addClassApi(val1, val2, val3, val4, val5);
+                 addClassApi(val1, val2, val3, val4, val5, val6);
              }
          },
          cancelValue: '取消',
@@ -169,7 +170,7 @@
      $('#end_picker').DateTimePicker();
  }
 
- function addClassApi(p1, p2, p3, p4, p5) {
+ function addClassApi(p1, p2, p3, p4, p5, p6) {
 
      $.ajax({
          url: TMS_BASE_URL + TMS_CLASS_ADD_DATA,
@@ -181,7 +182,8 @@
              classHours: p2,
              teacherId: p3,
              startTime: p4,
-             endTime: p5
+             endTime: p5,
+             intervalDays: p6
          },
          success: function(result) {
              refleshClassList();
@@ -203,9 +205,9 @@
              var val1 = $("#name").val();
              var val2 = $("#coursehours").val();
              var val3 = $("#change_teacher_select").val();
-
              var val4 = $("#start_time").val();
              var val5 = $("#end_time").val();
+             var val6 = $("#change_interval_time").val();
 
 
              if (val4.length < 19) {
@@ -216,10 +218,11 @@
                  val5 = val5 + ":00";
              }
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5)) {
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4) || isEmpty(val5) || isEmpty(val6)) {
                  alert("输入有误！");
+                 return false;
              } else {
-                 changeClassApi(val1, val2, val3, data.id, val4, val5);
+                 changeClassApi(val1, val2, val3, data.id, val4, val5, val6);
              }
 
          },
@@ -251,7 +254,7 @@
 
  }
 
- function changeClassApi(p1, p2, p3, classId, p4, p5) {
+ function changeClassApi(p1, p2, p3, classId, p4, p5, p6) {
      $.ajax({
          url: TMS_BASE_URL + TMS_CLASS_MODIFY_DATA,
          type: "POST",
@@ -263,7 +266,8 @@
              classHours: p2,
              teacherId: p3,
              startTime: p4,
-             endTime: p5
+             endTime: p5,
+             intervalDays: p6
          },
          success: function(result) {
              refleshClassList();

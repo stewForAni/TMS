@@ -332,7 +332,12 @@ var addClassDialogContent = ' <form>' +
     '<div id="end_picker"></div>' +
     '</div>' +
 
-
+    '<div class="row">' +
+    '<div class="input-field col s12">' +
+    '<input id="add_interval_time" name="add_interval_time" type="text" class="validate"/>' +
+    '<label class="active" for="add_interval_time">时间间隔</label>' +
+    '</div>' +
+    '</div>' +
 
     '<div class="row">' +
     '<div class="input-field col s12">' +
@@ -377,6 +382,12 @@ var changeClassDialogContent = ' <form>' +
     '<div id="end_picker"></div>' +
     '</div>' +
 
+    '<div class="row">' +
+    '<div class="input-field col s12">' +
+    '<input id="change_interval_time" name="change_interval_time" type="text" class="validate"/>' +
+    '<label class="active" for="change_interval_time">时间间隔</label>' +
+    '</div>' +
+    '</div>' +
 
 
     '<div class="row">' +
@@ -417,6 +428,7 @@ var lessonListContent = '<div class="card-panel" style="background-color: rgba(2
     '<thead>' +
     '<tr>' +
     '<th>课次ID</th>' +
+    '<th>课次名称</th>' +
     '<th>开始时间</th>' +
     '<th>结束时间</th>' +
     '<th>教材</th>' +
@@ -464,7 +476,7 @@ var addLessonDialogContent = ' <form>' +
 
 
 
-var progressContent ='<progress max="100" value="0" style="width:300px;"></progress>';
+var progressContent = '<progress max="100" value="0" style="width:300px;"></progress>';
 
 
 

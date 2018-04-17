@@ -219,6 +219,7 @@
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  addTeacherApi(val1, val2, val3, val4);
              }
@@ -284,6 +285,7 @@
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  changeTeacherApi(val1, val2, val3, val4, data.id);
              }
@@ -431,6 +433,7 @@
              var val1 = $("#termname").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  changeTermApi(val1, data.id);
              }
@@ -466,6 +469,7 @@
              var val1 = $("#termname").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  addTermApi(val1);
              }
@@ -574,6 +578,7 @@
              var val1 = $("#gradename").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  changeGradeApi(val1, data.id);
              }
@@ -609,6 +614,7 @@
              var val1 = $("#gradename").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  addGradeApi(val1);
              }
@@ -710,6 +716,7 @@
              var val1 = $("#subjectname").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  changeSubjectApi(val1, data.id);
              }
@@ -729,10 +736,10 @@
          content: subjectAddDialogContent,
          okValue: '确定',
          ok: function() {
-
              var val1 = $("#subjectname").val();
              if (isEmpty(val1)) {
                  alert("输入有误！");
+                 return false;
              } else {
                  addSubjectApi(val1);
              }
