@@ -65,8 +65,8 @@
      for (var i = 0; i < msg1.data.list.length; i++) {
 
          var predata = msg1.data.list[i];
-         var time1 = predata.startTime.substring(0, 17);
-         var time2 = predata.endTime.substring(0, 17);
+         var time1 = predata.startTime.substring(0, 16);
+         var time2 = predata.endTime.substring(0, 16);
 
          var newdata = '<tr><td>' +
              predata.courseId +

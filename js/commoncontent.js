@@ -335,7 +335,7 @@ var addClassDialogContent = ' <form>' +
     '<div class="row">' +
     '<div class="input-field col s12">' +
     '<input id="add_interval_time" name="add_interval_time" type="text" class="validate"/>' +
-    '<label class="active" for="add_interval_time">时间间隔</label>' +
+    '<label  for="add_interval_time">时间间隔</label>' +
     '</div>' +
     '</div>' +
 
@@ -385,7 +385,7 @@ var changeClassDialogContent = ' <form>' +
     '<div class="row">' +
     '<div class="input-field col s12">' +
     '<input id="change_interval_time" name="change_interval_time" type="text" class="validate"/>' +
-    '<label class="active" for="change_interval_time">时间间隔</label>' +
+    '<label  for="change_interval_time">时间间隔</label>' +
     '</div>' +
     '</div>' +
 
