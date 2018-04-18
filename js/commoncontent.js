@@ -427,7 +427,7 @@ var lessonListContent = '<div class="card-panel" style="background-color: rgba(2
     '<table>' +
     '<thead>' +
     '<tr>' +
-    '<th>课次ID</th>' +
+    '<th>课次序号</th>' +
     '<th>课次名称</th>' +
     '<th>开始时间</th>' +
     '<th>结束时间</th>' +
@@ -457,6 +457,12 @@ var addLessonDialogContent = ' <form>' +
     '<div id="end_picker"></div>' +
     '</div>' +
 
+    '<div class="row">' +
+    '<div class="input-field col s12">' +
+    '<input id="courseName" name="courseName" type="text" class="validate"/>' +
+    '<label  for="courseName">课次名称</label>' +
+    '</div>' +
+    '</div>' +
 
     '<div class="row">' +
     '<div class="input-field col s12" id="teacher_input">' +
@@ -493,6 +499,14 @@ var changeLessonDialogContent = ' <form>' +
     '<input type="text" id="end_time" data-field="datetime" >' +
     '<div id="end_picker"></div>' +
     '</div>' +
+
+    '<div class="row">' +
+    '<div class="input-field col s12">' +
+    '<input id="courseName" name="courseName" type="text" class="validate"/>' +
+    '<label class="active" for="courseName">课次名称</label>' +
+    '</div>' +
+    '</div>' +
+
 
     '<div class="row">' +
     '<div class="input-field col s12" id="teacher_input">' +

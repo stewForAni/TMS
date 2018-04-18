@@ -46,7 +46,7 @@
          refleshSubjectList();
      });
 
-     refleshTeacherList()
+     refleshTermList();
 
  });
 
@@ -57,28 +57,61 @@
      getTeacherList();
      getSubjectDataForTeacherList();
      getGradeDataForTeacherList();
+     setlefttabselectedstatus(1);
  }
 
  function refleshTermList() {
      currentIndex = 1;
      $('#main_content').empty();
      getTermData();
+     setlefttabselectedstatus(2);
  }
 
  function refleshGradeList() {
      currentIndex = 2;
      $('#main_content').empty();
      getGradeData();
+     setlefttabselectedstatus(3);
  }
 
  function refleshSubjectList() {
      currentIndex = 3;
      $('#main_content').empty();
      getSubjectData();
+     setlefttabselectedstatus(4);
+ }
+
+ function setlefttabselectedstatus(flag) {
+
+     resetlefttab();
+
+     if (flag == 1) {
+         $('#user_m').attr("class", "card-panel blue white-text");
+     }
+
+     if (flag == 2) {
+         $('#term_m').attr("class", "card-panel blue white-text");
+     }
+
+     if (flag == 3) {
+         $('#grade_m').attr("class", "card-panel blue white-text");
+     }
+
+     if (flag == 4) {
+         $('#subject_m').attr("class", "card-panel blue white-text");
+     }
+
  }
 
 
+ function resetlefttab() {
+     $('#user_m').attr("class", "card-panel white");
+     $('#term_m').attr("class", "card-panel white");
+     $('#grade_m').attr("class", "card-panel white");
+     $('#subject_m').attr("class", "card-panel white");
 
+
+ }
 
  /////////////////////////////////////////////////
  //                                              //

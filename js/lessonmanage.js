@@ -37,7 +37,7 @@
          cache: false,
          data: { classId: classId },
          success: function(result) {
-             dealdata1(result);
+             showlist(result);
          }
      });
 
@@ -57,19 +57,26 @@
  }
 
 
- function dealdata1(msg1) {
-
+ function showlist(msg1) {
      $('#main_content').empty();
      $('#main_content').append(lessonListContent);
-
      for (var i = 0; i < msg1.data.list.length; i++) {
-
          var predata = msg1.data.list[i];
+
+         if (isEmpty(predata.startTime)) {
+             predata.startTime = "Null";
+         }
+
+         if (isEmpty(predata.endTime)) {
+             predata.endTime = "Null";
+         }
+
+
          var time1 = predata.startTime.substring(0, 16);
          var time2 = predata.endTime.substring(0, 16);
 
          var newdata = '<tr><td>' +
-             predata.courseId +
+             (i + 1) +
              '</td><td>' +
              predata.courseName +
              '</td><td>' +
@@ -136,6 +143,7 @@
 
              var val1 = $("#start_time").val();
              var val2 = $("#end_time").val();
+             var val4 = $("#courseName").val();
              var val3 = $("#add_teacher_select").val();
 
              if (isEmpty(file) || isEmpty(name) || (name != "pdf")) {
@@ -145,14 +153,26 @@
 
              } else {
 
-                 if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+                 if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4)) {
                      alert("信息输入有误！");
                      return false;
                  } else {   
+
+
+                     if (val1.length < 19) {
+                         val1 = val1 + ":00";
+                     }
+
+                     if (val2.length < 19) {
+                         val2 = val2 + ":00";
+                     }
+
+
                      var formData = new FormData();
                      formData.append('teacherId', val3);
                      formData.append('startTime', val1);
                      formData.append('endTime', val2);
+                     formData.append('courseName', val4);
                      formData.append('classId', classId);
                      formData.append('file', file);
                      addLessonApi(formData);
@@ -222,6 +242,20 @@
          success: function(result) {
              progressDialog.remove();
              refleshLessonList();
+         },
+         error: function(err) {
+             progressDialog.remove();
+
+
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '警告！',
+                 content: '添加失败！',
+             });
+
+             errorDialog.showModal();
+
+
          }
      });
 
@@ -245,15 +279,10 @@
 
              var val1 = $("#start_time").val();
              var val2 = $("#end_time").val();
+             var val4 = $("#courseName").val();
+
              var val3 = $("#change_teacher_select").val();
 
-             if (val1.length < 19) {
-                 val1 = val1 + ":00";
-             }
-
-             if (val2.length < 19) {
-                 val2 = val2 + ":00";
-             }
 
              if (!isEmpty(file) && (name != "pdf")) {
                  alert("文件错误,必须是PDF文件！");
@@ -261,18 +290,42 @@
              }
 
 
-             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
+             if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3) || isEmpty(val4)) {
                  alert("信息输入有误！");
                  return false;
              } else {   
+
+
+                 if (val1.length < 19) {
+                     val1 = val1 + ":00";
+                 }
+
+                 if (val2.length < 19) {
+                     val2 = val2 + ":00";
+                 }
+
                  var formData = new FormData();
-                 formData.append('teacherId', val3);
-                 formData.append('startTime', val1);
-                 formData.append('endTime', val2);
-                 formData.append('classId', classId);
-                 formData.append('file', file);
-                 formData.append('id', data.courseId);
-                 changeLessonApi(formData);
+                 if (isEmpty(file)) {
+                     formData.append('teacherId', val3);
+                     formData.append('startTime', val1);
+                     formData.append('endTime', val2);
+                     formData.append('classId', classId);
+                     formData.append('courseName', val4);
+                     formData.append('id', data.courseId);
+                     changeLessonApiwithoutFile(formData);
+                 } else {
+                     formData.append('teacherId', val3);
+                     formData.append('startTime', val1);
+                     formData.append('endTime', val2);
+                     formData.append('classId', classId);
+                     formData.append('courseName', val4);
+                     formData.append('file', file);
+                     formData.append('id', data.courseId);
+                     changeLessonApi(formData);
+                 }
+
+
+
              }
 
          },
@@ -292,7 +345,7 @@
 
      $('#start_time').val(data.startTime);
      $('#end_time').val(data.endTime);
-
+     $('#courseName').val(data.courseName);
      $('#start_picker').DateTimePicker();
      $('#end_picker').DateTimePicker();
 
@@ -304,6 +357,31 @@
 
  }
 
+ function changeLessonApiwithoutFile(data) {
+
+
+     $.ajax({
+         url: TMS_BASE_URL + TMS_LESSON_MODIFY_DATA,
+         type: "POST",
+         cache: false,
+         data: data,
+         processData: false,
+         contentType: false,
+         success: function(result) {
+             refleshLessonList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '警告！',
+                 content: '修改失败！',
+             });
+
+             errorDialog.showModal();
+         }
+     });
+
+ }
 
  function changeLessonApi(data) {
 
@@ -342,6 +420,16 @@
          success: function(result) {
              progressDialog.remove();
              refleshLessonList();
+         },
+         error: function(err) {
+             progressDialog.remove();
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '警告！',
+                 content: '修改失败！',
+             });
+
+             errorDialog.showModal();
          }
      });
 
