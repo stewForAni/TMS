@@ -38,6 +38,15 @@
          data: { classId: classId },
          success: function(result) {
              showlist(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
 
@@ -52,6 +61,15 @@
          cache: false,
          success: function(result) {
              teacherData = result;
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -125,6 +143,15 @@
          data: { id: data.courseId },
          success: function(result) {
              refleshLessonList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }

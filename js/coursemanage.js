@@ -37,6 +37,15 @@
          data: { termId: termId },
          success: function(result) {
              dealdata(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
 
@@ -51,6 +60,15 @@
          cache: false,
          success: function(result) {
              gradeData = result;
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -62,6 +80,15 @@
          cache: false,
          success: function(result) {
              subjectData = result;
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -129,6 +156,15 @@
          data: { id: data.id, loginName: userName },
          success: function(result) {
              refleshCourseList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -184,6 +220,15 @@
          data: { id: id, subjectId: val1, gradeId: val2, termId: termId, name: val3 },
          success: function(result) {
              refleshCourseList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -243,6 +288,15 @@
          },
          success: function(result) {
              refleshCourseList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }

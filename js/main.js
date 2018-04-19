@@ -136,6 +136,15 @@
          cache: false,
          success: function(result) {
              gradeData = result;
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -148,6 +157,15 @@
          cache: false,
          success: function(result) {
              subjectData = result;
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -174,6 +192,15 @@
          cache: false,
          success: function(result) {
              dealTeacherListData(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -233,6 +260,15 @@
          data: { id: deleteId, loginName: userName },
          success: function(result) {
              refleshTeacherList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -298,6 +334,15 @@
 
              refleshTeacherList();
 
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -366,6 +411,15 @@
          data: { teacherName: p3, password: p4, subjectId: p1, grades: g, id: Id },
          success: function(result) {
              refleshTeacherList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -395,6 +449,15 @@
          cache: false,
          success: function(result) {
              dealTermListData(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -451,6 +514,15 @@
          data: { id: p.id, loginName: userName },
          success: function(result) {
              refleshTermList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -488,6 +560,15 @@
          data: { id: termId, termName: p },
          success: function(result) {
              refleshTermList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -521,6 +602,15 @@
          data: { termName: p },
          success: function(result) {
              refleshTermList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -548,6 +638,15 @@
          cache: false,
          success: function(result) {
              dealGradeData(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -595,6 +694,15 @@
          data: { id: gradeId, loginName: userName },
          success: function(result) {
              refleshGradeList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -632,6 +740,15 @@
          data: { id: gradeId, gradeName: p },
          success: function(result) {
              refleshGradeList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -668,6 +785,15 @@
          data: { gradeName: p },
          success: function(result) {
              refleshGradeList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
 
@@ -696,6 +822,15 @@
          cache: false,
          success: function(result) {
              dealSubjectData(result);
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -793,6 +928,15 @@
          data: { subjectName: p },
          success: function(result) {
              refleshSubjectList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
 
@@ -807,6 +951,15 @@
          data: { id: subjectId, subjectName: p },
          success: function(result) {
              refleshSubjectList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
  }
@@ -820,6 +973,15 @@
          data: { id: subjectId, loginName: userName },
          success: function(result) {
              refleshSubjectList();
+         },
+         error: function(err) {
+             var errorDialog = dialog({
+                 width: 300,
+                 title: '错误提示：',
+                 content: xhr.status + "/" + xhr.statusText,
+             });
+
+             errorDialog.showModal();
          }
      });
 
