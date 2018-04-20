@@ -180,9 +180,9 @@
          okValue: '确定',
          ok: function() {
 
-             var val1 = $("#change_subject_select").val();
-             var val2 = $("#change_grade_select").val();
-             var val3 = $("#change_subject_select").text() + $("#change_grade_select").text();
+             var val1 = $("#change_subject_select option:selected").val();
+             var val2 = $("#change_grade_select option:selected").val();
+             var val3 = $("#change_subject_select option:selected").text() + $("#change_grade_select option:selected").text();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
@@ -243,9 +243,9 @@
          okValue: '确定',
          ok: function() {
 
-             var val1 = $("#add_subject_select").val();
-             var val2 = $("#add_grade_select").val();
-             var val3 = $("#add_subject_select").text() + $("#add_grade_select").text();
+             var val1 = $("#add_subject_select option:selected").val();
+             var val2 = $("#add_grade_select option:selected").val();
+             var val3 = $("#add_subject_select option:selected").text() + $("#add_grade_select option:selected").text();
 
              if (isEmpty(val1) || isEmpty(val2) || isEmpty(val3)) {
                  alert("输入有误！");
