@@ -35,6 +35,9 @@
          cache: false,
          data: { gradeSubjectId: courseId },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              dealdata1(result);
          },
          error: function(err) {
@@ -57,6 +60,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              teacherData = result;
          },
          error: function(err) {
@@ -142,6 +148,9 @@
          cache: false,
          data: { id: data.id, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshClassList();
          },
          error: function(err) {
@@ -213,6 +222,9 @@
              intervalDays: p6
          },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshClassList();
          },
          error: function(err) {
@@ -306,6 +318,9 @@
              intervalDays: p6
          },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshClassList();
          },
          error: function(err) {

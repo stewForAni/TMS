@@ -36,6 +36,9 @@
          cache: false,
          data: { termId: termId },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              dealdata(result);
          },
          error: function(err) {
@@ -59,6 +62,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              gradeData = result;
          },
          error: function(err) {
@@ -79,6 +85,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              subjectData = result;
          },
          error: function(err) {
@@ -155,6 +164,9 @@
          cache: false,
          data: { id: data.id, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshCourseList();
          },
          error: function(err) {
@@ -219,6 +231,9 @@
          cache: false,
          data: { id: id, subjectId: val1, gradeId: val2, termId: termId, name: val3 },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshCourseList();
          },
          error: function(err) {
@@ -287,6 +302,9 @@
              name: val3
          },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshCourseList();
          },
          error: function(err) {

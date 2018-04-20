@@ -37,6 +37,9 @@
          cache: false,
          data: { classId: classId },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              showlist(result);
          },
          error: function(err) {
@@ -60,6 +63,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              teacherData = result;
          },
          error: function(err) {
@@ -142,6 +148,9 @@
          cache: false,
          data: { id: data.courseId },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshLessonList();
          },
          error: function(err) {
@@ -267,6 +276,9 @@
          processData: false,
          contentType: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              progressDialog.remove();
              refleshLessonList();
          },
@@ -395,6 +407,9 @@
          processData: false,
          contentType: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshLessonList();
          },
          error: function(err) {
@@ -445,6 +460,9 @@
          processData: false,
          contentType: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              progressDialog.remove();
              refleshLessonList();
          },

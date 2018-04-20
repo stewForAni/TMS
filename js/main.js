@@ -55,8 +55,6 @@
      currentIndex = 0;
      $('#main_content').empty();
      getTeacherList();
-     getSubjectDataForTeacherList();
-     getGradeDataForTeacherList();
      setlefttabselectedstatus(1);
  }
 
@@ -109,8 +107,6 @@
      $('#term_m').attr("class", "card-panel white");
      $('#grade_m').attr("class", "card-panel white");
      $('#subject_m').attr("class", "card-panel white");
-
-
  }
 
  /////////////////////////////////////////////////
@@ -191,7 +187,15 @@
          type: "POST",
          cache: false,
          success: function(result) {
+
+            if(result.status == 99){
+               window.location.replace("index.html");
+            };
+
              dealTeacherListData(result);
+             getSubjectDataForTeacherList();
+             getGradeDataForTeacherList();
+            
          },
          error: function(err) {
              var errorDialog = dialog({
@@ -259,6 +263,9 @@
          cache: false,
          data: { id: deleteId, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTeacherList();
          },
          error: function(err) {
@@ -331,7 +338,9 @@
          cache: false,
          data: { teacherName: p3, password: p4, subjectId: p1, grades: g },
          success: function(result) {
-
+ if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTeacherList();
 
          },
@@ -410,6 +419,9 @@
          cache: false,
          data: { teacherName: p3, password: p4, subjectId: p1, grades: g, id: Id },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTeacherList();
          },
          error: function(err) {
@@ -448,6 +460,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              dealTermListData(result);
          },
          error: function(err) {
@@ -513,6 +528,9 @@
          cache: false,
          data: { id: p.id, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTermList();
          },
          error: function(err) {
@@ -559,6 +577,9 @@
          cache: false,
          data: { id: termId, termName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTermList();
          },
          error: function(err) {
@@ -601,6 +622,9 @@
          cache: false,
          data: { termName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshTermList();
          },
          error: function(err) {
@@ -637,6 +661,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              dealGradeData(result);
          },
          error: function(err) {
@@ -693,6 +720,9 @@
          cache: false,
          data: { id: gradeId, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshGradeList();
          },
          error: function(err) {
@@ -739,6 +769,9 @@
          cache: false,
          data: { id: gradeId, gradeName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshGradeList();
          },
          error: function(err) {
@@ -784,6 +817,9 @@
          cache: false,
          data: { gradeName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshGradeList();
          },
          error: function(err) {
@@ -821,6 +857,9 @@
          type: "POST",
          cache: false,
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              dealSubjectData(result);
          },
          error: function(err) {
@@ -927,6 +966,9 @@
          cache: false,
          data: { subjectName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshSubjectList();
          },
          error: function(err) {
@@ -950,6 +992,9 @@
          cache: false,
          data: { id: subjectId, subjectName: p },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshSubjectList();
          },
          error: function(err) {
@@ -972,6 +1017,9 @@
          cache: false,
          data: { id: subjectId, loginName: userName },
          success: function(result) {
+             if(result.status == 99){
+               window.location.replace("index.html");
+            };
              refleshSubjectList();
          },
          error: function(err) {
